@@ -1,0 +1,7 @@
+{
+  "name": "beta-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
