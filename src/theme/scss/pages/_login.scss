@@ -1,0 +1,34 @@
+.login_form_page {
+  .login_form_container {
+    margin: calc($spacer * 2);
+    .login_logo_image {
+      margin-bottom: calc($spacer * 3);
+    }
+    ion-text > .title {
+      margin: calc($spacer * 2) 0;
+      text-align: left;
+      font-weight: 700;
+      font-size: xx-large;
+    }
+    ion-text > .subTitle {
+      color: gray;
+    }
+    &__button {
+      margin-top: calc($spacer * 3);
+      &__icon {
+        margin-left: 10px;
+      }
+    }
+    ion-item {
+      margin-top: 2%;
+    }
+  }
+  .login_form_footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: calc($spacer * 2);
+  }
+}

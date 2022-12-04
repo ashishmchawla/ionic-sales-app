@@ -1,0 +1,24 @@
+.leadContainerList {
+  margin-top: $spacer;
+  padding-top: calc($spacer * 2);
+  background-color: $primary !important;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  .leadListItem > ion-label > h1 {
+    color: $tertiary !important;
+    font-weight: 700;
+  }
+  ion-item {
+    border: 1px solid $tertiary !important;
+  }
+}
+.leadContainer {
+  background-color: $primary !important;
+}
+.fab_button {
+  margin-bottom: 4rem;
+  ion-fab-button > ion-icon {
+    color: $primary;
+    font-weight: 500;
+  }
+}

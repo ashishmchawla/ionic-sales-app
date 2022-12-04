@@ -1,0 +1,20 @@
+.homePageTab {
+  background-color: $tertiary !important;
+}
+.homePageCard {
+  border-radius: 15px;
+  text-align: center;
+  .homePageCardTitle {
+    font-size: xxx-large;
+    border-bottom: 1px solid white;
+    margin-bottom: 2%;
+  }
+}
+.pageTitle {
+  border-bottom: 1px solid $primary;
+  width: 100%;
+}
+.pageSubtitle {
+  margin-top: 4%;
+  margin-bottom: 2%;
+}
