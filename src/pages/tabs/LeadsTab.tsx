@@ -9,6 +9,7 @@ import {
   IonFab,
   IonFabButton,
   IonIcon,
+  IonSearchbar,
 } from "@ionic/react";
 import { Virtuoso } from "react-virtuoso";
 import { add, caretForwardOutline } from "ionicons/icons";
@@ -55,6 +56,7 @@ const LeadsTab: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent className="leadContainer">
+          <IonSearchbar showClearButton="focus" color="tertiary"></IonSearchbar>
           <Virtuoso
             className="leadContainerList"
             data={leads}

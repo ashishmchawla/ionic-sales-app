@@ -59,6 +59,24 @@ const HomeTab: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol>
+              <IonCard className="homePageCard" color="primary">
+                <IonCardHeader>
+                  <IonCardTitle className="homePageCardTitle">7</IonCardTitle>
+                  <IonCardSubtitle>Follow Ups</IonCardSubtitle>
+                </IonCardHeader>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard className="homePageCard" color="primary">
+                <IonCardHeader>
+                  <IonCardTitle className="homePageCardTitle">72%</IonCardTitle>
+                  <IonCardSubtitle>Fulfilled</IonCardSubtitle>
+                </IonCardHeader>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
               <IonText>
                 <h2 className="pageSubtitle">New Client Meetings</h2>
               </IonText>

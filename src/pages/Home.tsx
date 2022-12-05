@@ -19,7 +19,6 @@ interface Ownprops extends RouteComponentProps<{}> {}
 interface HomeProps extends Ownprops {}
 
 const Home: React.FC<HomeProps> = ({ location }) => {
-  const [selectedTab, setSelectedTab] = useState<string>("");
   let state = {} as any;
 
   if (location.state !== undefined) {
@@ -50,11 +49,7 @@ const Home: React.FC<HomeProps> = ({ location }) => {
               )}
             </Route>
           </IonRouterOutlet>
-          <IonTabBar
-            slot="bottom"
-            className="tabButtons"
-            selectedTab={selectedTab}
-          >
+          <IonTabBar slot="bottom" className="tabButtons">
             <IonTabButton tab="HomeTab" href="/home/HomeTab">
               <IonIcon icon={homeSharp} />
               <IonLabel>Home</IonLabel>
