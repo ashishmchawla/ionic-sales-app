@@ -19,6 +19,9 @@ const Signup = () => {
   const signupUser = () => {
     history.push({
       pathname: "/home",
+      state: {
+        tabName: "HomeTab",
+      },
     });
   };
 

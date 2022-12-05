@@ -20,6 +20,9 @@ const Login = () => {
   const loginUser = () => {
     history.push({
       pathname: "/home",
+      state: {
+        tabName: "HomeTab",
+      },
     });
   };
 
