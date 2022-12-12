@@ -42,6 +42,7 @@ const Login = () => {
           <span className="title">Login</span>
           <br />
           <span className="subTitle"> Please sign in to continue</span>
+          <br />
         </IonText>
 
         <IonItem>
