@@ -22,3 +22,8 @@
     font-weight: 500;
   }
 }
+.ion-color.sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md,
+.searchbar-left-aligned.sc-ion-searchbar-ios-h
+  .searchbar-input.sc-ion-searchbar-ios {
+  border-radius: 50px !important;
+}
