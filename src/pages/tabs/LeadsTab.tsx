@@ -40,6 +40,12 @@ const LeadsTab: React.FC = () => {
     });
   };
 
+  const addLead = () => {
+    history.push({
+      pathname: "/addLead",
+    });
+  };
+
   return (
     <IonPage>
       <IonHeader className="pageHeader">
@@ -88,7 +94,7 @@ const LeadsTab: React.FC = () => {
             horizontal="end"
             className="fab_button"
           >
-            <IonFabButton color="light">
+            <IonFabButton color="light" onClick={addLead}>
               <IonIcon icon={add}></IonIcon>
             </IonFabButton>
           </IonFab>

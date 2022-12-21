@@ -16,11 +16,13 @@
   background-color: $primary !important;
 }
 .fab_button {
-  margin-bottom: 4rem;
   ion-fab-button > ion-icon {
     color: $primary;
     font-weight: 500;
   }
+}
+.fab_button > .ios {
+  margin-bottom: 4rem;
 }
 .ion-color.sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md,
 .searchbar-left-aligned.sc-ion-searchbar-ios-h

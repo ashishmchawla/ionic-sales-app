@@ -27,6 +27,7 @@ import "./theme/scss/main.scss";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import LeadDetails from "./pages/leads/LeadDetails";
+import AddLead from "./pages/leads/AddLead";
 
 setupIonicReact();
 
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/lead/:lead_id" component={LeadDetails} />
+          <Route exact path="/addLead" component={AddLead} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
