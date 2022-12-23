@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   IonItem,
   IonLabel,
@@ -9,20 +10,47 @@ import {
   IonRow,
   IonCol,
   IonIcon,
+  useIonToast,
 } from "@ionic/react";
 import logo from "../theme/images/triventure_logo.png";
 import { arrowForwardOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
+import { toast } from "../utils/toast";
 import history from "../history";
+import { registerUser } from "../integrations/auth";
 
 const Signup = () => {
-  const signupUser = () => {
-    history.push({
-      pathname: "/home",
-      state: {
-        tabName: "HomeTab",
-      },
+  let verified = 0;
+  const [present] = useIonToast();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  async function signupUser() {
+    let userSignUp = await registerUser(firstName, lastName, email, password);
+  }
+
+  const presentToast = (message: any) => {
+    present({
+      message: message,
+      duration: 1500,
+      cssClass: "toast-danger",
+      position: "top",
     });
+  };
+
+  const checkPassword = (c_password: any) => {
+    if (password == "") {
+      presentToast("Password cannot be empty");
+    } else {
+      if (password === c_password && password.length === c_password.length) {
+        setConfirmPassword(c_password);
+      } else {
+        presentToast("Passwords do not match");
+      }
+    }
   };
 
   return (
@@ -44,25 +72,42 @@ const Signup = () => {
         </IonText>
         <IonItem>
           <IonLabel position="floating">First Name</IonLabel>
-          <IonInput type="text" placeholder="Enter your first name"></IonInput>
+          <IonInput
+            type="text"
+            placeholder="Enter your first name"
+            onIonChange={(e: any) => setFirstName(e.target.value)}
+          ></IonInput>
         </IonItem>
         <IonItem>
           <IonLabel position="floating">Last Name</IonLabel>
-          <IonInput type="text" placeholder="Enter your last name"></IonInput>
+          <IonInput
+            type="text"
+            placeholder="Enter your last name"
+            onIonChange={(e: any) => setLastName(e.target.value)}
+          ></IonInput>
         </IonItem>
         <IonItem>
           <IonLabel position="floating">Email</IonLabel>
-          <IonInput type="email" placeholder="Enter your email"></IonInput>
+          <IonInput
+            type="email"
+            placeholder="Enter your email"
+            onIonChange={(e: any) => setEmail(e.target.value)}
+          ></IonInput>
         </IonItem>
         <IonItem>
           <IonLabel position="floating">Password</IonLabel>
-          <IonInput type="password" placeholder="Enter password"></IonInput>
+          <IonInput
+            type="password"
+            placeholder="Enter password"
+            onIonChange={(e: any) => setPassword(e.target.value)}
+          ></IonInput>
         </IonItem>
         <IonItem>
           <IonLabel position="floating">Confirm Password</IonLabel>
           <IonInput
             type="password"
             placeholder="Confirm your password"
+            onIonChange={(e: any) => checkPassword(e.target.value)}
           ></IonInput>
         </IonItem>
         <IonGrid>
