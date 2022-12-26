@@ -1,29 +1,45 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export interface CurrentUser {
+  _id?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  notifications?: true;
+  token: string;
+}
+export interface AuthError {
+  message: string;
+}
+export interface AuthState {
+  isAuth: boolean;
+  currentUser?: CurrentUser;
+  error: AuthError;
+}
+
+export const initialState: AuthState = {
+  isAuth: false,
+  error: { message: "An Error occurred" },
+};
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    _id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    notifications: true,
-    tokens: [],
-  },
+  initialState,
   reducers: {
-    saveUser: (state, payload: any) => {
-      state._id = payload._id;
-      state.firstName = payload.firstName;
-      state.lastName = payload.lastName;
-      state.email = payload.email;
-      state.notifications = payload.notifications;
-      state.tokens = payload.tokens;
+    setAuthSuccess: (state, { payload }: PayloadAction<CurrentUser>) => {
+      state.currentUser = payload;
+      state.isAuth = true;
     },
-    updateTokens: (state, payload: any) => {
-      state.tokens = payload.tokens;
+    setLogOut: (state) => {
+      state.isAuth = false;
+      state.currentUser = undefined;
+    },
+    setAuthFailed: (state, { payload }: PayloadAction<string>) => {
+      state.error.message = payload;
+      state.isAuth = false;
     },
   },
 });
 
-export const { saveUser, updateTokens } = userSlice.actions;
+export const { setAuthSuccess, setAuthFailed, setLogOut } = userSlice.actions;
 export default userSlice.reducer;

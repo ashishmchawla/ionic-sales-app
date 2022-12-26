@@ -17,8 +17,7 @@ export async function registerUser(
       password: password,
     });
     console.log(userAdded);
-    if (userAdded.data.statusCode === 200) {
-      localStorage.setItem("token", userAdded.data._id);
+    if (userAdded.data) {
       return userAdded;
     }
   } catch (error) {

@@ -15,12 +15,14 @@ import {
 import logo from "../theme/images/triventure_logo.png";
 import { arrowForwardOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
-import { toast } from "../utils/toast";
 import history from "../history";
 import { registerUser } from "../integrations/auth";
+import { useDispatch } from "react-redux";
+import { setAuthSuccess, setAuthFailed } from "../redux/userSlice";
 
 const Signup = () => {
   let verified = 0;
+  const dispatch = useDispatch();
   const [present] = useIonToast();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -30,25 +32,39 @@ const Signup = () => {
 
   async function signupUser() {
     let userSignUp = await registerUser(firstName, lastName, email, password);
+    if (userSignUp) {
+      if (userSignUp.data.statusCode === 200) {
+        dispatch(setAuthSuccess(userSignUp.data));
+        localStorage.setItem("token", userSignUp.data.token);
+        localStorage.setItem("user_id", userSignUp.data._id);
+        history.push({
+          pathname: "/home",
+        });
+      }
+    }
+    if (userSignUp === false) {
+      dispatch(setAuthFailed("Something went wrong, please try again!"));
+      presentToast("Something went wrong, please try again", "toast-danger");
+    }
   }
 
-  const presentToast = (message: any) => {
+  const presentToast = (message: any, toastClass: any) => {
     present({
       message: message,
       duration: 1500,
-      cssClass: "toast-danger",
+      cssClass: toastClass,
       position: "top",
     });
   };
 
   const checkPassword = (c_password: any) => {
     if (password == "") {
-      presentToast("Password cannot be empty");
+      presentToast("Password cannot be empty", "toast-danger");
     } else {
       if (password === c_password && password.length === c_password.length) {
         setConfirmPassword(c_password);
       } else {
-        presentToast("Passwords do not match");
+        presentToast("Passwords do not match", "toast-warning");
       }
     }
   };
@@ -107,7 +123,7 @@ const Signup = () => {
           <IonInput
             type="password"
             placeholder="Confirm your password"
-            onIonChange={(e: any) => checkPassword(e.target.value)}
+            onIonBlur={(e: any) => checkPassword(e.target.value)}
           ></IonInput>
         </IonItem>
         <IonGrid>
