@@ -29,10 +29,12 @@ export const userSlice = createSlice({
     setAuthSuccess: (state, { payload }: PayloadAction<CurrentUser>) => {
       state.currentUser = payload;
       state.isAuth = true;
+      state.error.message = "";
     },
     setLogOut: (state) => {
       state.isAuth = false;
       state.currentUser = undefined;
+      state.error.message = "";
     },
     setAuthFailed: (state, { payload }: PayloadAction<string>) => {
       state.error.message = payload;

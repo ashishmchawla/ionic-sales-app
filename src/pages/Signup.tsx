@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   IonItem,
   IonLabel,
@@ -32,19 +32,22 @@ const Signup = () => {
 
   async function signupUser() {
     let userSignUp = await registerUser(firstName, lastName, email, password);
-    if (userSignUp) {
+    if (typeof userSignUp === "object") {
       if (userSignUp.data.statusCode === 200) {
         dispatch(setAuthSuccess(userSignUp.data));
         localStorage.setItem("token", userSignUp.data.token);
         localStorage.setItem("user_id", userSignUp.data._id);
         history.push({
           pathname: "/home",
+          state: {
+            tabName: "HomeTab",
+          },
         });
       }
     }
-    if (userSignUp === false) {
-      dispatch(setAuthFailed("Something went wrong, please try again!"));
-      presentToast("Something went wrong, please try again", "toast-danger");
+    if (typeof userSignUp === "string") {
+      dispatch(setAuthFailed(userSignUp));
+      presentToast(userSignUp, "toast-danger");
     }
   }
 

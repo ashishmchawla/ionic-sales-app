@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   IonItem,
   IonLabel,
@@ -10,21 +11,57 @@ import {
   IonCol,
   IonIcon,
   IonNote,
+  useIonToast,
 } from "@ionic/react";
 import logo from "../theme/images/triventure_logo.png";
 import { arrowForwardOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
+import { loginUser } from "../integrations/auth";
 import history from "../history";
+import { useDispatch } from "react-redux";
+import { setAuthFailed, setAuthSuccess } from "../redux/userSlice";
 
 const Login = () => {
-  const loginUser = () => {
-    history.push({
-      pathname: "/home",
-      state: {
-        tabName: "HomeTab",
-      },
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [present] = useIonToast();
+  const dispatch = useDispatch();
+
+  const presentToast = (message: any, toastClass: any) => {
+    present({
+      message: message,
+      duration: 1500,
+      cssClass: toastClass,
+      position: "top",
     });
   };
+
+  async function getIn() {
+    let loggedIn = await loginUser(email, password);
+    if (typeof loggedIn === "object") {
+      if (loggedIn.data.statusCode === 200) {
+        dispatch(setAuthSuccess(loggedIn.data));
+        localStorage.setItem("token", loggedIn.data.token);
+        localStorage.setItem("user_id", loggedIn.data._id);
+        history.push({
+          pathname: "/home",
+          state: {
+            tabName: "HomeTab",
+          },
+        });
+      }
+    }
+    if (typeof loggedIn === "string") {
+      dispatch(setAuthFailed(loggedIn));
+      presentToast(loggedIn, "toast-danger");
+    }
+    // history.push({
+    //   pathname: "/home",
+    //   state: {
+    //     tabName: "HomeTab",
+    //   },
+    // });
+  }
 
   return (
     <div className="login_form_page">
@@ -47,11 +84,19 @@ const Login = () => {
 
         <IonItem>
           <IonLabel position="floating">Email</IonLabel>
-          <IonInput type="email" placeholder="Enter your email"></IonInput>
+          <IonInput
+            type="email"
+            placeholder="Enter your email"
+            onIonBlur={(e: any) => setEmail(e.target.value)}
+          ></IonInput>
         </IonItem>
         <IonItem>
           <IonLabel position="floating">Password</IonLabel>
-          <IonInput type="password" placeholder="Enter password"></IonInput>
+          <IonInput
+            type="password"
+            placeholder="Enter password"
+            onIonBlur={(e: any) => setPassword(e.target.value)}
+          ></IonInput>
           <IonNote slot="helper">
             <Link to="">Forgot Password</Link>
           </IonNote>
@@ -61,7 +106,7 @@ const Login = () => {
             <IonCol offset="6" size="4">
               <IonButton
                 shape="round"
-                onClick={loginUser}
+                onClick={getIn}
                 className="login_form_container__button"
               >
                 Login

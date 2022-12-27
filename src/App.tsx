@@ -32,7 +32,8 @@ import AddLead from "./pages/leads/AddLead";
 setupIonicReact();
 
 const App: React.FC = () => {
-  const data = localStorage.getItem("user");
+  const loginToken = localStorage.getItem("token");
+  console.log("Token Found: " + loginToken);
   return (
     <IonApp>
       <IonReactRouter>
@@ -40,7 +41,9 @@ const App: React.FC = () => {
           <Route
             exact
             path="/"
-            render={() => <Redirect to={`${data ? "/dashboard" : "/login"}`} />}
+            render={() => (
+              <Redirect to={`${loginToken ? "/home" : "/login"}`} />
+            )}
           />
           <Route exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />

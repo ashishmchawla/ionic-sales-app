@@ -20,8 +20,23 @@ export async function registerUser(
     if (userAdded.data) {
       return userAdded;
     }
-  } catch (error) {
-    console.log(error);
-    return false;
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}
+
+export async function loginUser(email: any, password: any) {
+  try {
+    const userLoggedIn = await axios.post(SERVER + "/user/login", {
+      email: email,
+      password: password,
+    });
+    console.log(userLoggedIn);
+    if (userLoggedIn.data) {
+      return userLoggedIn;
+    }
+  } catch (error: any) {
+    console.log(error.response.data.message);
+    return error.response.data.message;
   }
 }

@@ -8,18 +8,18 @@ const persistConfig = {
   storage,
 };
 
-const reducers = {
-  reducer: {
-    user: userReducer,
-  },
-};
-
 let rootReducer = combineReducers({
   user: userReducer,
 });
 
-const store = configureStore(reducers);
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
