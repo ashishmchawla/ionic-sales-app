@@ -15,8 +15,13 @@ import {
   IonAccordion,
   IonButton,
 } from "@ionic/react";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 
 const MoreTab: React.FC = () => {
+  const currentUser = useAppSelector(
+    (state: any) => state.user.currentUser.user
+  );
+  console.log(currentUser);
   return (
     <IonPage>
       <IonHeader className="pageHeader">

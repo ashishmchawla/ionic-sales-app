@@ -10,9 +10,9 @@ export async function registerUser(
   password: any
 ) {
   try {
-    const userAdded = await axios.post(SERVER + "/user/register", {
-      firstName: firstName,
-      lastName: lastName,
+    const userAdded = await axios.post(SERVER + "/register", {
+      first_name: firstName,
+      last_name: lastName,
       email: email,
       password: password,
     });
@@ -27,11 +27,10 @@ export async function registerUser(
 
 export async function loginUser(email: any, password: any) {
   try {
-    const userLoggedIn = await axios.post(SERVER + "/user/login", {
+    const userLoggedIn = await axios.post(SERVER + "/login", {
       email: email,
       password: password,
     });
-    console.log(userLoggedIn);
     if (userLoggedIn.data) {
       return userLoggedIn;
     }

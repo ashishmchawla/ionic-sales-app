@@ -20,8 +20,8 @@ const AddLead = () => {
   const [lastName, setLastName] = useState("");
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
-  const [accountCode, setAccountCode] = useState("");
   const [accountCategory, setAccountCategory] = useState("");
+  const [accountCode, setAccountCode] = useState("");
   const [thirdParty, setThirdParty] = useState("");
 
   const backToLeads = () => {
@@ -34,9 +34,7 @@ const AddLead = () => {
     });
   };
 
-  const submitLead = () => {
-    console.log(firstName + " " + accountCategory + " " + thirdParty);
-  };
+  const submitLead = () => {};
 
   return (
     <IonContent>

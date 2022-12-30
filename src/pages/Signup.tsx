@@ -33,10 +33,10 @@ const Signup = () => {
   async function signupUser() {
     let userSignUp = await registerUser(firstName, lastName, email, password);
     if (typeof userSignUp === "object") {
-      if (userSignUp.data.statusCode === 200) {
+      if (userSignUp.data.status === 1) {
         dispatch(setAuthSuccess(userSignUp.data));
         localStorage.setItem("token", userSignUp.data.token);
-        localStorage.setItem("user_id", userSignUp.data._id);
+        localStorage.setItem("user_id", userSignUp.data.id);
         history.push({
           pathname: "/home",
           state: {

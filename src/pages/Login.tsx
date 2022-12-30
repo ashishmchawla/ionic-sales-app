@@ -38,11 +38,12 @@ const Login = () => {
 
   async function getIn() {
     let loggedIn = await loginUser(email, password);
+    console.log(loggedIn);
     if (typeof loggedIn === "object") {
-      if (loggedIn.data.statusCode === 200) {
+      if (loggedIn.data.status === 1) {
         dispatch(setAuthSuccess(loggedIn.data));
         localStorage.setItem("token", loggedIn.data.token);
-        localStorage.setItem("user_id", loggedIn.data._id);
+        localStorage.setItem("user_id", loggedIn.data.id);
         history.push({
           pathname: "/home",
           state: {
