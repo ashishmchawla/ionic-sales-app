@@ -18,7 +18,11 @@ import { Link } from "react-router-dom";
 import history from "../history";
 import { registerUser } from "../integrations/auth";
 import { useDispatch } from "react-redux";
-import { setAuthSuccess, setAuthFailed } from "../redux/userSlice";
+import {
+  setAuthSuccess,
+  setAuthToken,
+  setAuthFailed,
+} from "../redux/userSlice";
 
 const Signup = () => {
   let verified = 0;
@@ -34,7 +38,8 @@ const Signup = () => {
     let userSignUp = await registerUser(firstName, lastName, email, password);
     if (typeof userSignUp === "object") {
       if (userSignUp.data.status === 1) {
-        dispatch(setAuthSuccess(userSignUp.data));
+        dispatch(setAuthSuccess(userSignUp.data.user));
+        dispatch(setAuthToken(userSignUp.data.token));
         localStorage.setItem("token", userSignUp.data.token);
         localStorage.setItem("user_id", userSignUp.data.id);
         history.push({

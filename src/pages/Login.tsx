@@ -19,7 +19,11 @@ import { Link } from "react-router-dom";
 import { loginUser } from "../integrations/auth";
 import history from "../history";
 import { useDispatch } from "react-redux";
-import { setAuthFailed, setAuthSuccess } from "../redux/userSlice";
+import {
+  setAuthFailed,
+  setAuthToken,
+  setAuthSuccess,
+} from "../redux/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +45,8 @@ const Login = () => {
     console.log(loggedIn);
     if (typeof loggedIn === "object") {
       if (loggedIn.data.status === 1) {
-        dispatch(setAuthSuccess(loggedIn.data));
+        dispatch(setAuthSuccess(loggedIn.data.user));
+        dispatch(setAuthToken(loggedIn.data.token));
         localStorage.setItem("token", loggedIn.data.token);
         localStorage.setItem("user_id", loggedIn.data.id);
         history.push({

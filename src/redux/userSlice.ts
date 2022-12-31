@@ -15,11 +15,13 @@ export interface AuthState {
   isAuth: boolean;
   currentUser?: CurrentUser;
   error: AuthError;
+  userToken: string;
 }
 
 export const initialState: AuthState = {
   isAuth: false,
   error: { message: "An Error occurred" },
+  userToken: "",
 };
 
 export const userSlice = createSlice({
@@ -30,6 +32,9 @@ export const userSlice = createSlice({
       state.currentUser = payload;
       state.isAuth = true;
       state.error.message = "";
+    },
+    setAuthToken: (state, { payload }: PayloadAction<string>) => {
+      state.userToken = payload;
     },
     setLogOut: (state) => {
       state.isAuth = false;
@@ -43,5 +48,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setAuthSuccess, setAuthFailed, setLogOut } = userSlice.actions;
+export const { setAuthSuccess, setAuthToken, setAuthFailed, setLogOut } =
+  userSlice.actions;
 export default userSlice.reducer;
