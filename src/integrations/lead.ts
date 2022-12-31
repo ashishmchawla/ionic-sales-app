@@ -2,6 +2,11 @@ import axios from "axios";
 import { base_url } from "../environment";
 const token = localStorage.getItem("token");
 const SERVER = base_url;
+const options = {
+  headers: {
+    Authorization: "Bearer " + token,
+  },
+};
 
 export async function addLead(
   firstName: any,
@@ -10,8 +15,28 @@ export async function addLead(
   location: any,
   accountCategory: any,
   accountCode: any,
-  thirdParty: any
+  thirdParty: any,
+  leadOwner: any
 ) {
   try {
-  } catch (error) {}
+    const createLead = await axios.post(
+      SERVER + "/leads/createLead",
+      {
+        first_name: firstName,
+        last_name: lastName,
+        contact,
+        location,
+        account_category: accountCategory,
+        account_code: accountCode,
+        third_party: thirdParty,
+        lead_owner: leadOwner,
+      },
+      options
+    );
+    if (createLead.data) {
+      return createLead;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
 }

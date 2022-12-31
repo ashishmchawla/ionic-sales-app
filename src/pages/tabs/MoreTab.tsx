@@ -18,9 +18,7 @@ import {
 import { useAppSelector, useAppDispatch } from "../../hooks";
 
 const MoreTab: React.FC = () => {
-  const currentUser = useAppSelector(
-    (state: any) => state.user.currentUser.user
-  );
+  const currentUser = useAppSelector((state: any) => state.user.currentUser);
   console.log(currentUser);
   return (
     <IonPage>
@@ -40,7 +38,7 @@ const MoreTab: React.FC = () => {
 
         <IonItem className="user_info">
           <IonAvatar slot="start" className="user_info_avatar">
-            AC
+            {currentUser.first_name[0] + currentUser.last_name[0]}
           </IonAvatar>
           <IonLabel>
             <p className="title">Ashish Chawla</p>

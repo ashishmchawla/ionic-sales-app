@@ -11,11 +11,17 @@ import {
   IonSelectOption,
   IonText,
   IonToolbar,
+  useIonToast,
 } from "@ionic/react";
 import { chevronBack } from "ionicons/icons";
 import history from "../../history";
+import { addLead } from "../../integrations/lead";
+import { useSelector } from "react-redux";
 
 const AddLead = () => {
+  const currentUser = useSelector((state: any) => state.user.currentUser);
+  const [present] = useIonToast();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [contact, setContact] = useState("");
@@ -34,7 +40,40 @@ const AddLead = () => {
     });
   };
 
-  const submitLead = () => {};
+  async function submitLead() {
+    const addedLead = await addLead(
+      firstName,
+      lastName,
+      contact,
+      location,
+      accountCategory,
+      accountCode,
+      thirdParty,
+      currentUser.id
+    );
+    if (typeof addedLead === "object") {
+      if (addedLead.data.status == 1) {
+        presentToast(addedLead.data.message, "toast-success");
+        history.push({
+          pathname: "/lead/" + addedLead.data.id,
+        });
+      } else {
+        presentToast(addedLead.data.error_message, "toast-warning");
+      }
+    }
+    if (typeof addedLead === "string") {
+      presentToast(addedLead, "toast-danger");
+    }
+  }
+
+  const presentToast = (message: any, toastClass: any) => {
+    present({
+      message: message,
+      duration: 1500,
+      cssClass: toastClass,
+      position: "top",
+    });
+  };
 
   return (
     <IonContent>
