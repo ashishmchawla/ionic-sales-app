@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CurrentUser {
-  _id?: string;
+  id?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -20,7 +20,7 @@ export interface AuthState {
 
 export const initialState: AuthState = {
   isAuth: false,
-  error: { message: "An Error occurred" },
+  error: { message: "" },
   userToken: "",
 };
 
@@ -31,7 +31,6 @@ export const userSlice = createSlice({
     setAuthSuccess: (state, { payload }: PayloadAction<CurrentUser>) => {
       state.currentUser = payload;
       state.isAuth = true;
-      state.error.message = "";
     },
     setAuthToken: (state, { payload }: PayloadAction<string>) => {
       state.userToken = payload;

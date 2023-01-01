@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route } from "react-router-dom";
 import {
   IonIcon,
@@ -14,16 +14,30 @@ import { cogSharp, homeSharp, listSharp } from "ionicons/icons";
 import HomeTab from "./tabs/HomeTab";
 import LeadsTab from "./tabs/LeadsTab";
 import MoreTab from "./tabs/MoreTab";
+import { useSelector } from "react-redux";
+import { getLeads } from "../integrations/lead";
 
 interface Ownprops extends RouteComponentProps<{}> {}
 interface HomeProps extends Ownprops {}
 
 const Home: React.FC<HomeProps> = ({ location }) => {
   let state = {} as any;
-
   if (location.state !== undefined) {
     state = location.state;
   }
+
+  async function callLeads() {
+    const leads = await getLeads();
+    if (typeof leads === "object") {
+      console.log(leads);
+    }
+  }
+
+  useEffect(() => {
+    callLeads();
+  }, []);
+
+  const currentUser = useSelector((state: any) => state.user.currentUser);
 
   return (
     <div>

@@ -48,7 +48,7 @@ const Login = () => {
         dispatch(setAuthSuccess(loggedIn.data.user));
         dispatch(setAuthToken(loggedIn.data.token));
         localStorage.setItem("token", loggedIn.data.token);
-        localStorage.setItem("user_id", loggedIn.data.id);
+        localStorage.setItem("user_id", loggedIn.data.user.id);
         history.push({
           pathname: "/home",
           state: {

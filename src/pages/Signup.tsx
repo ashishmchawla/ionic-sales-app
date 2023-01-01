@@ -41,7 +41,7 @@ const Signup = () => {
         dispatch(setAuthSuccess(userSignUp.data.user));
         dispatch(setAuthToken(userSignUp.data.token));
         localStorage.setItem("token", userSignUp.data.token);
-        localStorage.setItem("user_id", userSignUp.data.id);
+        localStorage.setItem("user_id", userSignUp.data.user.id);
         history.push({
           pathname: "/home",
           state: {

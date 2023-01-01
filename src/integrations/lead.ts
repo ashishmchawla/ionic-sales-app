@@ -40,3 +40,14 @@ export async function addLead(
     return error.response.data.message;
   }
 }
+
+export async function getLeads() {
+  try {
+    const leads = await axios.get(SERVER + "/leads", options);
+    if (leads.data) {
+      return leads;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}

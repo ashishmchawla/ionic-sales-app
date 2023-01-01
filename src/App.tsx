@@ -33,7 +33,6 @@ setupIonicReact();
 
 const App: React.FC = () => {
   const loginToken = localStorage.getItem("token");
-  console.log("Token Found: " + loginToken);
   return (
     <IonApp>
       <IonReactRouter>

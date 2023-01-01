@@ -14,26 +14,10 @@ import {
 import { Virtuoso } from "react-virtuoso";
 import { add, caretForwardOutline } from "ionicons/icons";
 import history from "../../history";
+import { RouteComponentProps } from "react-router";
 
 const LeadsTab: React.FC = () => {
-  const leads = [
-    {
-      id: 1,
-      label: "Ashish Chawla",
-      updatedDate: "10 Nov 2022",
-    },
-    {
-      id: 2,
-      label: "A Chawla",
-      updatedDate: "10 Nov 2022",
-    },
-    {
-      id: 3,
-      label: "Mr Chawla",
-      updatedDate: "10 Nov 2022",
-    },
-  ];
-
+  let leadData = [] as any;
   const openLeadDetails = (lead_id: any) => {
     history.push({
       pathname: "/lead/" + lead_id,
@@ -65,7 +49,7 @@ const LeadsTab: React.FC = () => {
           <IonSearchbar showClearButton="focus" color="tertiary"></IonSearchbar>
           <Virtuoso
             className="leadContainerList"
-            data={leads}
+            data={leadData}
             style={{ height: "100%" }}
             totalCount={100}
             itemContent={(index, lead) => {
