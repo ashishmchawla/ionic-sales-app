@@ -14,6 +14,9 @@ import {
   useIonViewWillEnter,
   useIonLoading,
   IonSpinner,
+  IonTextarea,
+  IonLabel,
+  IonItem,
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
 import history from "../../history";
@@ -192,6 +195,10 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
             <p className="info_heading">Address</p>
             <p className="info_title">{leadData.location}</p>
           </div>
+          <div className="lead_details_info_single">
+            <p className="info_heading">Lead Status</p>
+            <p className="info_title">{leadData.lead_status.toUpperCase()}</p>
+          </div>
           <div className="segment_containter">
             <IonSegment
               value={activeSegment}
@@ -214,16 +221,18 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
               {activeSegment === "notes" && (
                 <>
                   <br />
+                  <IonItem>
+                    <IonLabel>New Note</IonLabel>
+                    <IonTextarea
+                      placeholder="Add your notes"
+                      autofocus={true}
+                    ></IonTextarea>
+                  </IonItem>
+                  <br />
                   <IonButton shape="round" slot="end" fill="outline">
                     <IonIcon slot="start" icon={addOutline}></IonIcon>
                     Add Note
                   </IonButton>
-                  <Chrono
-                    mode="VERTICAL"
-                    items={notesData}
-                    cardHeight={100}
-                    hideControls={true}
-                  ></Chrono>
                 </>
               )}
             </div>
