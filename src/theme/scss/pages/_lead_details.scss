@@ -28,6 +28,9 @@
   }
   .lead_icon_container {
     text-align: center;
+    ion-button {
+      height: 50px;
+    }
   }
   .lead_icon {
     border: 1px solid $primary;

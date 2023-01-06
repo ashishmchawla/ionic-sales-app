@@ -51,3 +51,17 @@ export async function getLeads() {
     return error.response.data.message;
   }
 }
+
+export async function getLeadDetails(id: any) {
+  try {
+    const leadDetail = await axios.get(
+      SERVER + "/leads/" + id.lead_id,
+      options
+    );
+    if (leadDetail.data) {
+      return leadDetail;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonToolbar,
   IonButtons,
@@ -10,6 +10,10 @@ import {
   IonCol,
   IonSegment,
   IonSegmentButton,
+  useIonToast,
+  useIonViewWillEnter,
+  useIonLoading,
+  IonSpinner,
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
 import history from "../../history";
@@ -22,6 +26,7 @@ import {
   mailOutline,
 } from "ionicons/icons";
 import { Chrono } from "react-chrono";
+import { getLeadDetails } from "../../integrations/lead";
 
 interface Ownprops
   extends RouteComponentProps<{
@@ -35,8 +40,11 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
   match: { params: id },
 }) => {
   const [activeSegment, setActiveSegment] = useState<string>("activity");
+  const [loading, setLoading] = useState(true);
+  const [leadData, setLeadData] = useState({} as any);
+  const [showLoader, dismissLoader] = useIonLoading();
+  const [present] = useIonToast();
   const assignSegment = (value: any) => {
-    console.log(value);
     setActiveSegment(value);
   };
 
@@ -49,6 +57,35 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
       },
     });
   };
+
+  const presentToast = (message: any, toastClass: any) => {
+    present({
+      message: message,
+      duration: 1500,
+      cssClass: toastClass,
+      position: "top",
+    });
+  };
+
+  async function callLeadDetails() {
+    console.log("Callng data");
+    const leadDetails = await getLeadDetails(id);
+    if (typeof leadDetails === "object") {
+      if (leadDetails.data.status === 1) {
+        console.log("Data fetched");
+        console.log(leadDetails.data);
+        setLeadData(leadDetails.data.details);
+        setLoading(false);
+      }
+    }
+    if (typeof leadDetails === "string") {
+      presentToast(leadDetails, "toast-danger");
+    }
+  }
+
+  useEffect(() => {
+    callLeadDetails();
+  }, []);
 
   const activityData = [
     {
@@ -78,7 +115,11 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
     },
   ];
 
-  return (
+  return loading ? (
+    <>
+      <IonSpinner></IonSpinner>
+    </>
+  ) : (
     <IonContent className="lead_details">
       <IonToolbar>
         <IonButtons slot="start">
@@ -90,25 +131,37 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
       </IonToolbar>
 
       <div className="lead_details_avatar_container">
-        <div className="lead_details_avatar">AC</div>
-        <div className="lead_details_title">Ashish Chawla</div>
+        <div className="lead_details_avatar">
+          {leadData.first_name[0] + leadData.last_name[0]}
+        </div>
+        <div className="lead_details_title">
+          {leadData.first_name + " " + leadData.last_name}
+        </div>
       </div>
 
       <div className="lead_details_icons">
         <IonGrid>
           <IonRow>
             <IonCol className="lead_icon_container">
-              <IonIcon className="lead_icon" src={callOutline}></IonIcon>
+              <IonButton fill="clear" href={"tel:" + leadData.contact}>
+                <IonIcon className="lead_icon" src={callOutline}></IonIcon>
+              </IonButton>
               <p className="lead_icon_title">Call</p>
             </IonCol>
             <IonCol className="lead_icon_container">
-              <IonIcon className="lead_icon" src={mailOutline}></IonIcon>
+              <IonButton fill="clear" href={"mailto:" + leadData.email}>
+                <IonIcon className="lead_icon" src={mailOutline}></IonIcon>
+              </IonButton>
               <p className="lead_icon_title">Mail</p>
             </IonCol>
-            <IonCol className="lead_icon_container">
+            {/* <IonCol className="lead_icon_container">
+              <IonButton
+                fill="clear"
+                href={"sms:+91" + leadData.contact}
+              ></IonButton>
               <IonIcon className="lead_icon" src={chatboxOutline}></IonIcon>
               <p className="lead_icon_title">Text</p>
-            </IonCol>
+            </IonCol> */}
             <IonCol className="lead_icon_container">
               <IonIcon className="lead_icon" src={createOutline}></IonIcon>
               <p className="lead_icon_title">Edit</p>
@@ -121,19 +174,23 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
         <div className="lead_details_info">
           <div className="lead_details_info_single">
             <p className="info_heading">Display Name</p>
-            <p className="info_title">Ashish Chawla</p>
+            <p className="info_title">
+              {leadData.first_name + " " + leadData.last_name}
+            </p>
           </div>
           <div className="lead_details_info_single">
             <p className="info_heading">Email</p>
-            <p className="info_title">hey@ashishchawla.tech</p>
+            <p className="info_title">
+              {leadData.email ? leadData.email : "--"}{" "}
+            </p>
           </div>
           <div className="lead_details_info_single">
             <p className="info_heading">Phone</p>
-            <p className="info_title">+91 8080644424</p>
+            <p className="info_title">+91 {leadData.contact}</p>
           </div>
           <div className="lead_details_info_single">
             <p className="info_heading">Address</p>
-            <p className="info_title">803, Amrut Heaven, Kalyan(W)</p>
+            <p className="info_title">{leadData.location}</p>
           </div>
           <div className="segment_containter">
             <IonSegment
