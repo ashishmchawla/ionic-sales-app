@@ -75,8 +75,6 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
     const leadDetails = await getLeadDetails(id);
     if (typeof leadDetails === "object") {
       if (leadDetails.data.status === 1) {
-        console.log("Data fetched");
-        console.log(leadDetails.data);
         setLeadData(leadDetails.data.details);
         setLoading(false);
       }
@@ -117,6 +115,15 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
       cardDetailedText: `On 10 May 1940, Hitler began his long-awaited offensive in the west by invading neutral Holland and Belgium and attacking northern France. Holland capitulated after only five days of fighting, and the Belgians surrendered on 28 May. With the success of the German ‘Blitzkrieg’, the British Expeditionary Force and French troops were in danger of being cut off and destroyed.`,
     },
   ];
+
+  const editLead = () => {
+    history.push({
+      pathname: "./editLead",
+      state: {
+        leadData: leadData,
+      },
+    });
+  };
 
   return loading ? (
     <>
@@ -166,7 +173,9 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
               <p className="lead_icon_title">Text</p>
             </IonCol> */}
             <IonCol className="lead_icon_container">
-              <IonIcon className="lead_icon" src={createOutline}></IonIcon>
+              <IonButton fill="clear" onClick={editLead}>
+                <IonIcon className="lead_icon" src={createOutline}></IonIcon>
+              </IonButton>
               <p className="lead_icon_title">Edit</p>
             </IonCol>
           </IonRow>
