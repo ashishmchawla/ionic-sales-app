@@ -131,7 +131,7 @@ const Signup = () => {
           <IonInput
             type="password"
             placeholder="Confirm your password"
-            onIonBlur={(e: any) => checkPassword(e.target.value)}
+            onIonChange={(e: any) => checkPassword(e.target.value)}
           ></IonInput>
         </IonItem>
         <IonGrid>

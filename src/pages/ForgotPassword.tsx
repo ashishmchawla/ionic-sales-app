@@ -25,9 +25,9 @@ import {
   setAuthSuccess,
 } from "../redux/userSlice";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
+const ForgotPassword = () => {
   const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
   const [present] = useIonToast();
   const dispatch = useDispatch();
 
@@ -41,33 +41,38 @@ const Login = () => {
   };
 
   async function getIn() {
-    let loggedIn = await loginUser(email, password);
-    console.log(loggedIn);
-    if (typeof loggedIn === "object") {
-      if (loggedIn.data.status === 1) {
-        dispatch(setAuthSuccess(loggedIn.data.user));
-        dispatch(setAuthToken(loggedIn.data.token));
-        localStorage.setItem("token", loggedIn.data.token);
-        localStorage.setItem("user_id", loggedIn.data.user.id);
-        history.push({
-          pathname: "/home",
-          state: {
-            tabName: "HomeTab",
-          },
-        });
+    // let loggedIn = await loginUser(email, password);
+    // if (typeof loggedIn === "object") {
+    //   if (loggedIn.data.status === 1) {
+    //     dispatch(setAuthSuccess(loggedIn.data.user));
+    //     dispatch(setAuthToken(loggedIn.data.token));
+    //     localStorage.setItem("token", loggedIn.data.token);
+    //     localStorage.setItem("user_id", loggedIn.data.user.id);
+    //     history.push({
+    //       pathname: "/home",
+    //       state: {
+    //         tabName: "HomeTab",
+    //       },
+    //     });
+    //   }
+    // }
+    // if (typeof loggedIn === "string") {
+    //   dispatch(setAuthFailed(loggedIn));
+    //   presentToast(loggedIn, "toast-danger");
+    // }
+  }
+
+  const checkPassword = (c_password: any) => {
+    if (password == "") {
+      presentToast("Password cannot be empty", "toast-danger");
+    } else {
+      if (password === c_password && password.length === c_password.length) {
+        setCPassword(c_password);
+      } else {
+        presentToast("Passwords do not match", "toast-warning");
       }
     }
-    if (typeof loggedIn === "string") {
-      dispatch(setAuthFailed(loggedIn));
-      presentToast(loggedIn, "toast-danger");
-    }
-    // history.push({
-    //   pathname: "/home",
-    //   state: {
-    //     tabName: "HomeTab",
-    //   },
-    // });
-  }
+  };
 
   return (
     <div className="login_form_page">
@@ -82,30 +87,27 @@ const Login = () => {
           </IonRow>
         </IonGrid>
         <IonText>
-          <span className="title">Login</span>
+          <span className="title">Reset Password</span>
           <br />
-          <span className="subTitle"> Please sign in to continue</span>
+          <span className="subTitle">Setup a new password</span>
           <br />
         </IonText>
 
-        <IonItem>
-          <IonLabel position="floating">Email</IonLabel>
-          <IonInput
-            type="email"
-            placeholder="Enter your email"
-            onIonBlur={(e: any) => setEmail(e.target.value)}
-          ></IonInput>
-        </IonItem>
         <IonItem>
           <IonLabel position="floating">Password</IonLabel>
           <IonInput
             type="password"
             placeholder="Enter password"
-            onIonChange={(e: any) => setPassword(e.target.value)}
+            onIonBlur={(e: any) => setPassword(e.target.value)}
           ></IonInput>
-          <IonNote slot="helper">
-            <Link to="">Forgot Password</Link>
-          </IonNote>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Confirm Password</IonLabel>
+          <IonInput
+            type="password"
+            placeholder="Enter password"
+            onIonChange={(e: any) => checkPassword(e.target.value)}
+          ></IonInput>
         </IonItem>
         <IonGrid>
           <IonRow>
@@ -115,7 +117,7 @@ const Login = () => {
                 onClick={getIn}
                 className="login_form_container__button"
               >
-                Login
+                Save Password
                 <IonIcon
                   src={arrowForwardOutline}
                   className="login_form_container__button__icon"
@@ -125,13 +127,8 @@ const Login = () => {
           </IonRow>
         </IonGrid>
       </div>
-      <div className="login_form_footer">
-        <IonText>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </IonText>
-      </div>
     </div>
   );
 };
 
-export default Login;
+export default ForgotPassword;
