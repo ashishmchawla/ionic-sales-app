@@ -65,3 +65,47 @@ export async function getLeadDetails(id: any) {
     return error.response.data.message;
   }
 }
+
+export async function createNote(id: any, note: any) {
+  try {
+    const addNote = await axios.post(
+      SERVER + "/lead_activity/create",
+      {
+        lead_id: id.lead_id,
+        activity_log: note,
+        activity_type: "note",
+        remind_at: null,
+      },
+      options
+    );
+    if (addNote.data) {
+      return addNote;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}
+
+export async function createReminder(
+  id: any,
+  reminder: any,
+  reminder_time: any
+) {
+  try {
+    const addReminder = await axios.post(
+      SERVER + "/lead_activity/create",
+      {
+        lead_id: id.lead_id,
+        activity_log: reminder,
+        activity_type: "reminder",
+        remind_at: reminder_time,
+      },
+      options
+    );
+    if (addReminder.data) {
+      return addReminder;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}

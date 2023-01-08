@@ -53,9 +53,10 @@ const AddLead = () => {
     );
     if (typeof addedLead === "object") {
       if (addedLead.data.status == 1) {
+        console.log(addedLead.data);
         presentToast(addedLead.data.message, "toast-success");
         history.push({
-          pathname: "/lead/" + addedLead.data.id,
+          pathname: "/lead/" + addedLead.data.lead.id,
         });
       } else {
         presentToast(addedLead.data.error_message, "toast-warning");
