@@ -270,6 +270,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                     ></Chrono>
                   ) : (
                     <div className="no_activities">
+                      <br />
                       <h2>No Activities yet</h2>
                     </div>
                   )}
