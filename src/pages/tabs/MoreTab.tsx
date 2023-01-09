@@ -15,11 +15,23 @@ import {
   IonAccordion,
   IonButton,
 } from "@ionic/react";
+import { useDispatch } from "react-redux";
+import history from "../../history";
 import { useAppSelector, useAppDispatch } from "../../hooks";
+import { setLogOut } from "../../redux/userSlice";
 
 const MoreTab: React.FC = () => {
   const currentUser = useAppSelector((state: any) => state.user.currentUser);
-  console.log(currentUser);
+  const dispatch = useDispatch();
+  const signout = () => {
+    dispatch(setLogOut());
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    history.push({
+      pathname: "/",
+    });
+  };
+
   return (
     <IonPage>
       <IonHeader className="pageHeader">
@@ -95,7 +107,9 @@ const MoreTab: React.FC = () => {
           </IonItemGroup>
         </IonList>
         <br />
-        <IonButton fill="clear">Sign Out</IonButton>
+        <IonButton fill="clear" onClick={signout}>
+          Sign Out
+        </IonButton>
       </IonContent>
     </IonPage>
   );

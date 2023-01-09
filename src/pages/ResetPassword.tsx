@@ -41,6 +41,7 @@ const ForgotPassword = () => {
   };
 
   async function getIn() {
+    console.log(password, cpassword);
     if (password === cpassword) {
       let loggedIn = await resetPassword(password);
       if (typeof loggedIn === "object") {
@@ -55,23 +56,36 @@ const ForgotPassword = () => {
               tabName: "HomeTab",
             },
           });
+        } else {
+          presentToast(loggedIn.data.error_message, "toast-danger");
         }
       }
       if (typeof loggedIn === "string") {
         dispatch(setAuthFailed(loggedIn));
         presentToast(loggedIn, "toast-danger");
       }
+    } else {
+      presentToast("Passwords do not match", "toast-warning");
     }
   }
-
   const checkPassword = (c_password: any) => {
     if (password == "") {
       presentToast("Password cannot be empty", "toast-danger");
+      if (c_password == "") {
+        presentToast("Passwords do not match", "toast-warning");
+      }
     } else {
-      if (password === c_password && password.length === c_password.length) {
+      console.log("reached here");
+      if (c_password == "") {
+        presentToast("Passwords do not match", "toast-warning");
+      } else if (
+        password === c_password &&
+        password.length === c_password.length
+      ) {
         setCPassword(c_password);
       } else {
         presentToast("Passwords do not match", "toast-warning");
+        setCPassword("");
       }
     }
   };
@@ -120,7 +134,7 @@ const ForgotPassword = () => {
                 onClick={getIn}
                 className="login_form_container__button"
               >
-                Save Password
+                Set Password
                 <IonIcon
                   src={arrowForwardOutline}
                   className="login_form_container__button__icon"

@@ -48,6 +48,8 @@ const Signup = () => {
             tabName: "HomeTab",
           },
         });
+      } else {
+        presentToast(userSignUp.data.error_message, "toast-danger");
       }
     }
     if (typeof userSignUp === "string") {
@@ -68,11 +70,21 @@ const Signup = () => {
   const checkPassword = (c_password: any) => {
     if (password == "") {
       presentToast("Password cannot be empty", "toast-danger");
+      if (c_password == "") {
+        presentToast("Passwords do not match", "toast-warning");
+      }
     } else {
-      if (password === c_password && password.length === c_password.length) {
+      console.log("reached here");
+      if (c_password == "") {
+        presentToast("Passwords do not match", "toast-warning");
+      } else if (
+        password === c_password &&
+        password.length === c_password.length
+      ) {
         setConfirmPassword(c_password);
       } else {
         presentToast("Passwords do not match", "toast-warning");
+        setConfirmPassword("");
       }
     }
   };

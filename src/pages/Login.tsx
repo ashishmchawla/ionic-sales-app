@@ -55,6 +55,8 @@ const Login = () => {
             tabName: "HomeTab",
           },
         });
+      } else {
+        presentToast(loggedIn.data.error_message, "toast-danger");
       }
     }
     if (typeof loggedIn === "string") {
@@ -104,7 +106,7 @@ const Login = () => {
             onIonChange={(e: any) => setPassword(e.target.value)}
           ></IonInput>
           <IonNote slot="helper">
-            <Link to="">Forgot Password</Link>
+            <Link to="/forgot_password">Forgot Password</Link>
           </IonNote>
         </IonItem>
         <IonGrid>

@@ -129,6 +129,8 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
         setTimeout(() => {
           callLeadDetails();
         }, 1500);
+      } else {
+        presentToast(addNote.data.error_message, "toast-danger");
       }
     }
     if (typeof addNote === "string") {
@@ -146,6 +148,8 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
         setTimeout(() => {
           callLeadDetails();
         }, 1500);
+      } else {
+        presentToast(addReminder.data.error_message, "toast-danger");
       }
     }
     if (typeof addReminder === "string") {

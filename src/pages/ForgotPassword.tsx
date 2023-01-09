@@ -51,6 +51,8 @@ const ForgotPassword = () => {
         history.push({
           pathname: "/reset_password",
         });
+      } else {
+        presentToast(verify.data.error_message, "toast-danger");
       }
     }
     if (typeof verify === "string") {
@@ -83,7 +85,7 @@ const ForgotPassword = () => {
           <IonInput
             type="email"
             placeholder="Enter your email"
-            onIonBlur={(e: any) => setEmail(e.target.value)}
+            onIonChange={(e: any) => setEmail(e.target.value)}
           ></IonInput>
         </IonItem>
         <IonGrid>
