@@ -54,7 +54,7 @@ const App: React.FC = () => {
           <Route exact path="/reset_password" component={ResetPassword} />
           <Route exact path="/lead/:lead_id" component={LeadDetails} />
           <Route exact path="/addLead" component={AddLead} />
-          <Route exact path="/editLead" component={EditLead} />
+          <Route exact path="/editLead/:lead_id" component={EditLead} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

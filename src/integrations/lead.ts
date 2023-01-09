@@ -40,6 +40,41 @@ export async function addLead(
     return error.response.data.message;
   }
 }
+export async function editLead(
+  id: any,
+  firstName: any,
+  lastName: any,
+  contact: any,
+  location: any,
+  accountCategory: any,
+  accountCode: any,
+  thirdParty: any,
+  leadStatus: any
+) {
+  try {
+    console.log(id);
+    const editedLead = await axios.post(
+      SERVER + "/leads/editLead",
+      {
+        lead_id: id.lead_id,
+        first_name: firstName,
+        last_name: lastName,
+        contact,
+        location,
+        account_category: accountCategory,
+        account_code: accountCode,
+        third_party: thirdParty,
+        lead_status: leadStatus,
+      },
+      options
+    );
+    if (editedLead.data) {
+      return editedLead;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}
 
 export async function getLeads() {
   try {

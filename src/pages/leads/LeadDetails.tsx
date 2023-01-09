@@ -110,7 +110,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
 
   const editLead = () => {
     history.push({
-      pathname: "./editLead",
+      pathname: "/editLead/" + leadData.id,
       state: {
         leadData: leadData,
       },
@@ -156,8 +156,6 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
       presentToast(addReminder, "toast-danger");
     }
   }
-
-  console.log(activityLog);
 
   return loading ? (
     <div className="spinner">
