@@ -16,7 +16,7 @@ import {
 import logo from "../theme/images/triventure_logo.png";
 import { arrowForwardOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
-import { loginUser, verifyEmail } from "../integrations/auth";
+import { loginUser, resetPassword } from "../integrations/auth";
 import history from "../history";
 import { useDispatch } from "react-redux";
 import {
@@ -26,7 +26,8 @@ import {
 } from "../redux/userSlice";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
   const [present] = useIonToast();
   const dispatch = useDispatch();
 
@@ -39,26 +40,43 @@ const ForgotPassword = () => {
     });
   };
 
-  async function checkEmail() {
-    let verify = await verifyEmail(email);
-
-    if (typeof verify === "object") {
-      if (verify.data.status === 1) {
-        dispatch(setAuthSuccess(verify.data.user));
-        dispatch(setAuthToken(verify.data.token));
-        localStorage.setItem("token", verify.data.token);
-        localStorage.setItem("user_id", verify.data.user.id);
-        history.push({
-          pathname: "/reset_password",
-        });
+  async function getIn() {
+    if (password === cpassword) {
+      let loggedIn = await resetPassword(password);
+      if (typeof loggedIn === "object") {
+        if (loggedIn.data.status === 1) {
+          dispatch(setAuthSuccess(loggedIn.data.user));
+          dispatch(setAuthToken(loggedIn.data.token));
+          localStorage.setItem("token", loggedIn.data.token);
+          localStorage.setItem("user_id", loggedIn.data.user.id);
+          history.push({
+            pathname: "/home",
+            state: {
+              tabName: "HomeTab",
+            },
+          });
+        }
       }
-    }
-    if (typeof verify === "string") {
-      dispatch(setAuthFailed(verify));
-      presentToast(verify, "toast-danger");
+      if (typeof loggedIn === "string") {
+        dispatch(setAuthFailed(loggedIn));
+        presentToast(loggedIn, "toast-danger");
+      }
     }
   }
 
+  const checkPassword = (c_password: any) => {
+    if (password == "") {
+      presentToast("Password cannot be empty", "toast-danger");
+    } else {
+      if (password === c_password && password.length === c_password.length) {
+        setCPassword(c_password);
+      } else {
+        presentToast("Passwords do not match", "toast-warning");
+      }
+    }
+  };
+
+  const loginToken = localStorage.getItem("token");
   return (
     <div className="login_form_page">
       <div className="login_form_container">
@@ -74,16 +92,24 @@ const ForgotPassword = () => {
         <IonText>
           <span className="title">Reset Password</span>
           <br />
-          <span className="subTitle">Enter your email</span>
+          <span className="subTitle">Setup a new password</span>
           <br />
         </IonText>
 
         <IonItem>
-          <IonLabel position="floating">Email</IonLabel>
+          <IonLabel position="floating">Password</IonLabel>
           <IonInput
-            type="email"
-            placeholder="Enter your email"
-            onIonBlur={(e: any) => setEmail(e.target.value)}
+            type="password"
+            placeholder="Enter password"
+            onIonBlur={(e: any) => setPassword(e.target.value)}
+          ></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Confirm Password</IonLabel>
+          <IonInput
+            type="password"
+            placeholder="Enter password"
+            onIonChange={(e: any) => checkPassword(e.target.value)}
           ></IonInput>
         </IonItem>
         <IonGrid>
@@ -91,10 +117,10 @@ const ForgotPassword = () => {
             <IonCol offset="6" size="4">
               <IonButton
                 shape="round"
-                onClick={checkEmail}
+                onClick={getIn}
                 className="login_form_container__button"
               >
-                Proceed
+                Save Password
                 <IonIcon
                   src={arrowForwardOutline}
                   className="login_form_container__button__icon"

@@ -27,6 +27,7 @@ import "./theme/scss/main.scss";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import LeadDetails from "./pages/leads/LeadDetails";
 import AddLead from "./pages/leads/AddLead";
 import EditLead from "./pages/leads/EditLead";
@@ -50,6 +51,7 @@ const App: React.FC = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/forgot_password" component={ForgotPassword} />
+          <Route exact path="/reset_password" component={ResetPassword} />
           <Route exact path="/lead/:lead_id" component={LeadDetails} />
           <Route exact path="/addLead" component={AddLead} />
           <Route exact path="/editLead" component={EditLead} />
