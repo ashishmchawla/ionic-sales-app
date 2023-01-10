@@ -238,7 +238,11 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
           {leadData.account_category ? (
             <div className="lead_details_info_single">
               <p className="info_heading">Account Category</p>
-              <p className="info_title">{leadData.account_category}</p>
+              <p className="info_title">
+                {leadData.account_category === "third_party"
+                  ? leadData.third_party
+                  : leadData.account_category}
+              </p>
             </div>
           ) : (
             ""

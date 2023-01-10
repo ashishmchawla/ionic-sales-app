@@ -99,6 +99,30 @@ const HomeTab: React.FC = () => {
               <BarGraph />
             </IonCol>
           </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonText>
+                <h2 className="pageSubtitle">Margin</h2>
+              </IonText>
+              <BarGraph />
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonText>
+                <h2 className="pageSubtitle">Mutual Funds</h2>
+              </IonText>
+              <BarGraph />
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonText>
+                <h2 className="pageSubtitle">Insurance</h2>
+              </IonText>
+              <BarGraph />
+            </IonCol>
+          </IonRow>
         </IonGrid>
       </IonContent>
     </IonPage>

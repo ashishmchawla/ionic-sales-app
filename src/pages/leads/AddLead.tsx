@@ -133,9 +133,10 @@ const AddLead = () => {
             placeholder="Account Category"
             onIonChange={(e: any) => setAccountCategory(e.target.value)}
           >
-            <IonSelectOption value="margin_details">
-              Margin Details
-            </IonSelectOption>
+            <IonSelectOption value="account">Account</IonSelectOption>
+            <IonSelectOption value="margin">Margin</IonSelectOption>
+            <IonSelectOption value="mutual_funds">Mutual Funds</IonSelectOption>
+            <IonSelectOption value="insurance">Insurance</IonSelectOption>
             <IonSelectOption value="third_party">Third Party</IonSelectOption>
           </IonSelect>
         </IonItem>

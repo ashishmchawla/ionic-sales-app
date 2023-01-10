@@ -40,6 +40,7 @@ export async function addLead(
     return error.response.data.message;
   }
 }
+
 export async function editLead(
   id: any,
   firstName: any,
@@ -95,6 +96,21 @@ export async function getLeadDetails(id: any) {
     );
     if (leadDetail.data) {
       return leadDetail;
+    }
+  } catch (error: any) {
+    return error.response.data.message;
+  }
+}
+
+export async function findLead(word: any) {
+  try {
+    const found = await axios.post(
+      SERVER + "/leads/search/",
+      { searchWord: word },
+      options
+    );
+    if (found.data) {
+      return found;
     }
   } catch (error: any) {
     return error.response.data.message;
