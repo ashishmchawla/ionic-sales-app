@@ -3,7 +3,12 @@ import { CategoryScale } from "chart.js";
 import { Chart as ChartJS } from "chart.js/auto";
 import { useIonViewWillEnter, useIonViewWillLeave } from "@ionic/react";
 
-const BarGraph: React.FC = (props) => {
+interface GraphData {
+  type: string;
+  data: [];
+}
+
+const BarGraph: React.FC<GraphData> = ({ type, data }) => {
   useIonViewWillEnter(() => {
     ChartJS.register(CategoryScale);
   }, []);
@@ -22,7 +27,7 @@ const BarGraph: React.FC = (props) => {
         borderWidth: 2,
         hoverBackgroundColor: "#8b9dc3",
         hoverBorderColor: "#3b5998",
-        data: [30, 65],
+        data: data,
       },
     ],
   };

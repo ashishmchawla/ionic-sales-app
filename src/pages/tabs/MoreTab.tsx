@@ -53,7 +53,9 @@ const MoreTab: React.FC = () => {
             {currentUser.first_name[0] + currentUser.last_name[0]}
           </IonAvatar>
           <IonLabel>
-            <p className="title">Ashish Chawla</p>
+            <p className="title">
+              {currentUser.first_name + currentUser.last_name}
+            </p>
             <p className="subTitle">Employee</p>
           </IonLabel>
         </IonItem>
