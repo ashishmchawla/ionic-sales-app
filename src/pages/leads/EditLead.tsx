@@ -17,11 +17,10 @@ import { RouteComponentProps } from "react-router";
 import { chevronBack } from "ionicons/icons";
 import history from "../../history";
 import { editLead } from "../../integrations/lead";
-import { useSelector } from "react-redux";
 
-interface Ownprops extends RouteComponentProps<{}> {}
+interface Ownprops extends RouteComponentProps<{}> { }
 
-interface LeadEditProps extends Ownprops {}
+interface LeadEditProps extends Ownprops { }
 
 const EditLead: React.FC<LeadEditProps> = ({
   location,
@@ -29,7 +28,6 @@ const EditLead: React.FC<LeadEditProps> = ({
 }) => {
   let state = {} as any;
   state = location.state;
-  const currentUser = useSelector((state: any) => state.user.currentUser);
   const [present] = useIonToast();
   const [firstName, setFirstName] = useState(state.leadData.first_name);
   const [lastName, setLastName] = useState("");
@@ -37,8 +35,11 @@ const EditLead: React.FC<LeadEditProps> = ({
   const [address, setAddress] = useState("");
   const [accountCategory, setAccountCategory] = useState("");
   const [accountCode, setAccountCode] = useState("");
-  const [thirdParty, setThirdParty] = useState("");
   const [leadStatus, setLeadStatus] = useState("");
+  const [marginValue, setMarginValue] = useState(0);
+  const [mfValue, setMfValue] = useState(0);
+  const [insuranceValue, setInsuranceValue] = useState(0);
+  const [optValue, setOptValue] = useState(0);
 
   const backToLeads = () => {
     console.log("Button Clicked");
@@ -60,11 +61,14 @@ const EditLead: React.FC<LeadEditProps> = ({
       address,
       accountCategory,
       accountCode,
-      thirdParty,
+      marginValue,
+      mfValue,
+      insuranceValue,
+      optValue,
       leadStatus
     );
     if (typeof editedLead === "object") {
-      if (editedLead.data.status == 1) {
+      if (editedLead.data.status === 1) {
         presentToast(editedLead.data.message, "toast-success");
         history.push({
           pathname: "/lead/" + temp3.lead_id,
@@ -96,7 +100,6 @@ const EditLead: React.FC<LeadEditProps> = ({
     setAddress(leadData.location);
     setAccountCategory(leadData.account_category);
     setAccountCode(leadData.account_code);
-    setThirdParty(leadData.third_party);
     setLeadStatus(leadData.lead_status);
   }, []);
 
@@ -166,22 +169,45 @@ const EditLead: React.FC<LeadEditProps> = ({
             <IonSelectOption value="account">Account</IonSelectOption>
             <IonSelectOption value="margin">Margin</IonSelectOption>
             <IonSelectOption value="mutual_funds">Mutual Funds</IonSelectOption>
-            <IonSelectOption value="insurance">Insurance</IonSelectOption>
-            <IonSelectOption value="third_party">Third Party</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-        <IonItem>
-          <IonSelect
-            placeholder="Products"
-            value={thirdParty}
-            onIonChange={(e: any) => setThirdParty(e.target.value)}
-          >
-            <IonSelectOption value="insurance">Insurance</IonSelectOption>
-            <IonSelectOption value="mutual_funds">Mutual Funds</IonSelectOption>
-            <IonSelectOption value="option_brains">
+            <IonSelectOption value="insurance">Insurance</IonSelectOption>  <IonSelectOption value="option_brains">
               Option Brains
             </IonSelectOption>
           </IonSelect>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Margin Value</IonLabel>
+          <IonInput
+            type="text"
+            value={marginValue}
+            placeholder="Enter Margin Value (₹)"
+            onIonChange={(e: any) => setMarginValue(e.target.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Mutual Funds Value</IonLabel>
+          <IonInput
+            type="text"
+            value={mfValue}
+            placeholder="Enter Mutual Funds Value (₹)"
+            onIonChange={(e: any) => setMfValue(e.target.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Insurance Value</IonLabel>
+          <IonInput
+            type="text"
+            value={insuranceValue}
+            placeholder="Enter insurance Value (₹)"
+            onIonChange={(e: any) => setInsuranceValue(e.target.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Option brains Value</IonLabel>
+          <IonInput
+            type="text" value={optValue}
+            placeholder="Enter Option brains Value (₹)"
+            onIonChange={(e: any) => setOptValue(e.target.value)}
+          />
         </IonItem>
         <br />
         <IonButton shape="round" onClick={submitLead}>

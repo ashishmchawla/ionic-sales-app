@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   IonButton,
   IonButtons,
@@ -28,7 +28,10 @@ const AddLead = () => {
   const [location, setLocation] = useState("");
   const [accountCategory, setAccountCategory] = useState("");
   const [accountCode, setAccountCode] = useState("");
-  const [thirdParty, setThirdParty] = useState("");
+  const [marginValue, setMarginValue] = useState(0);
+  const [mfValue, setMfValue] = useState(0);
+  const [insuranceValue, setInsuranceValue] = useState(0);
+  const [optValue, setOptValue] = useState(0);
 
   const backToLeads = () => {
     console.log("Button Clicked");
@@ -47,12 +50,14 @@ const AddLead = () => {
       contact,
       location,
       accountCategory,
-      accountCode,
-      thirdParty,
+      accountCode, marginValue,
+      mfValue,
+      insuranceValue,
+      optValue,
       currentUser.id
     );
     if (typeof addedLead === "object") {
-      if (addedLead.data.status == 1) {
+      if (addedLead.data.status === 1) {
         console.log(addedLead.data);
         presentToast(addedLead.data.message, "toast-success");
         history.push({
@@ -137,24 +142,45 @@ const AddLead = () => {
             <IonSelectOption value="margin">Margin</IonSelectOption>
             <IonSelectOption value="mutual_funds">Mutual Funds</IonSelectOption>
             <IonSelectOption value="insurance">Insurance</IonSelectOption>
-            <IonSelectOption value="third_party">Third Party</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-        <IonItem>
-          <IonSelect
-            placeholder="Products"
-            onIonChange={(e: any) => setThirdParty(e.target.value)}
-          >
-            <IonSelectOption value="insurance">Insurance</IonSelectOption>
-            <IonSelectOption value="mutual_funds">Mutual Funds</IonSelectOption>
             <IonSelectOption value="option_brains">
               Option Brains
             </IonSelectOption>
           </IonSelect>
         </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Margin Value</IonLabel>
+          <IonInput
+            type="text"
+            placeholder="Enter Margin Value (₹)"
+            onIonChange={(e: any) => setMarginValue(e.target.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Mutual Funds Value</IonLabel>
+          <IonInput
+            type="text"
+            placeholder="Enter Mutual Funds Value (₹)"
+            onIonChange={(e: any) => setMfValue(e.target.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Insurance Value</IonLabel>
+          <IonInput
+            type="text"
+            placeholder="Enter insurance Value (₹)"
+            onIonChange={(e: any) => setInsuranceValue(e.target.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Option brains Value</IonLabel>
+          <IonInput
+            type="text"
+            placeholder="Enter Option brains Value (₹)"
+            onIonChange={(e: any) => setOptValue(e.target.value)}
+          />
+        </IonItem>
         <br />
         <IonButton shape="round" onClick={submitLead}>
-          {" "}
           Submit
         </IonButton>
       </div>

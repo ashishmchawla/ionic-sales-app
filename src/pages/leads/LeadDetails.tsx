@@ -37,9 +37,9 @@ import moment from "moment";
 interface Ownprops
   extends RouteComponentProps<{
     id?: any;
-  }> {}
+  }> { }
 
-interface LeadDetailProps extends Ownprops {}
+interface LeadDetailProps extends Ownprops { }
 
 const LeadDetails: React.FC<LeadDetailProps> = ({
   location,
@@ -94,6 +94,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
             activityItem.type = activity.activity_type;
             activityItem.remind_at = activity.remind_at;
             activityData.push(activityItem);
+            return '';
           });
           setActivityLog(activityData);
         }
@@ -235,22 +236,45 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
             <p className="info_heading">Lead Status</p>
             <p className="info_title">{leadData.lead_status.toUpperCase()}</p>
           </div>
-          {leadData.account_category ? (
-            <div className="lead_details_info_single">
-              <p className="info_heading">Account Category</p>
-              <p className="info_title">
-                {leadData.account_category === "third_party"
-                  ? leadData.third_party
-                  : leadData.account_category}
-              </p>
-            </div>
-          ) : (
-            ""
-          )}
           {leadData.account_code ? (
             <div className="lead_details_info_single">
               <p className="info_heading">Account Code</p>
               <p className="info_title">{leadData.account_code}</p>
+            </div>
+          ) : (
+            ""
+          )}
+          {leadData.marginValue ? (
+            <div className="lead_details_info_single">
+              <p className="info_heading">Margin Value</p>
+              <p className="info_title"> ₹{leadData.marginValue}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {leadData.mfValue ? (
+            <div className="lead_details_info_single">
+              <p className="info_heading">Mutual Funds Value</p>
+              <p className="info_title"> ₹{leadData.mfValue}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {leadData.insuranceValue ? (
+            <div className="lead_details_info_single">
+              <p className="info_heading">Insurance Value</p>
+              <p className="info_title"> ₹{leadData.insuranceValue}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {leadData.optValue ? (
+            <div className="lead_details_info_single">
+              <p className="info_heading">Option brains Value</p>
+              <p className="info_title"> ₹{leadData.optValue}</p>
             </div>
           ) : (
             ""
