@@ -44,13 +44,15 @@ const AddLead = () => {
   };
 
   async function submitLead() {
+    console.log(accountCategory);
     const addedLead = await addLead(
       firstName,
       lastName,
       contact,
       location,
       accountCategory,
-      accountCode, marginValue,
+      accountCode,
+      marginValue,
       mfValue,
       insuranceValue,
       optValue,
@@ -137,6 +139,7 @@ const AddLead = () => {
           <IonSelect
             placeholder="Account Category"
             onIonChange={(e: any) => setAccountCategory(e.target.value)}
+            multiple={true}
           >
             <IonSelectOption value="account">Account</IonSelectOption>
             <IonSelectOption value="margin">Margin</IonSelectOption>
@@ -148,7 +151,7 @@ const AddLead = () => {
           </IonSelect>
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Margin Value</IonLabel>
+          <IonLabel position="floating">Margin Value (₹)</IonLabel>
           <IonInput
             type="text"
             placeholder="Enter Margin Value (₹)"
@@ -156,7 +159,7 @@ const AddLead = () => {
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Mutual Funds Value</IonLabel>
+          <IonLabel position="floating">Mutual Funds Value (₹)</IonLabel>
           <IonInput
             type="text"
             placeholder="Enter Mutual Funds Value (₹)"
@@ -164,7 +167,7 @@ const AddLead = () => {
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Insurance Value</IonLabel>
+          <IonLabel position="floating">Insurance Value (₹)</IonLabel>
           <IonInput
             type="text"
             placeholder="Enter insurance Value (₹)"
@@ -172,7 +175,7 @@ const AddLead = () => {
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Option brains Value</IonLabel>
+          <IonLabel position="floating">Option brains Value (₹)</IonLabel>
           <IonInput
             type="text"
             placeholder="Enter Option brains Value (₹)"

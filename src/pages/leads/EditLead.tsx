@@ -98,7 +98,7 @@ const EditLead: React.FC<LeadEditProps> = ({
     setLastName(leadData.last_name);
     setContact(leadData.contact);
     setAddress(leadData.location);
-    setAccountCategory(leadData.account_category);
+    setAccountCategory(leadData.account_category.split(','));
     setAccountCode(leadData.account_code);
     setLeadStatus(leadData.lead_status);
   }, []);
@@ -165,6 +165,7 @@ const EditLead: React.FC<LeadEditProps> = ({
             placeholder="Account Category"
             value={accountCategory}
             onIonChange={(e: any) => setAccountCategory(e.target.value)}
+            multiple={true}
           >
             <IonSelectOption value="account">Account</IonSelectOption>
             <IonSelectOption value="margin">Margin</IonSelectOption>
@@ -175,7 +176,7 @@ const EditLead: React.FC<LeadEditProps> = ({
           </IonSelect>
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Margin Value</IonLabel>
+          <IonLabel position="floating">Margin Value (₹)</IonLabel>
           <IonInput
             type="text"
             value={marginValue}
@@ -184,7 +185,7 @@ const EditLead: React.FC<LeadEditProps> = ({
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Mutual Funds Value</IonLabel>
+          <IonLabel position="floating">Mutual Funds Value (₹)</IonLabel>
           <IonInput
             type="text"
             value={mfValue}
@@ -193,7 +194,7 @@ const EditLead: React.FC<LeadEditProps> = ({
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Insurance Value</IonLabel>
+          <IonLabel position="floating">Insurance Value (₹)</IonLabel>
           <IonInput
             type="text"
             value={insuranceValue}
@@ -202,7 +203,7 @@ const EditLead: React.FC<LeadEditProps> = ({
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">Option brains Value</IonLabel>
+          <IonLabel position="floating">Option brains Value (₹)</IonLabel>
           <IonInput
             type="text" value={optValue}
             placeholder="Enter Option brains Value (₹)"
