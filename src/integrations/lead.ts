@@ -1,12 +1,12 @@
-import axios from "axios";
-import { base_url } from "../environment";
-const token = localStorage.getItem("token");
-const SERVER = base_url;
+import axios from "axios"
+import { base_url } from "../environment"
+const token = localStorage.getItem("token")
+const SERVER = base_url
 const options = {
     headers: {
         Authorization: "Bearer " + token,
     },
-};
+}
 
 export async function addLead(
     firstName: any,
@@ -38,12 +38,12 @@ export async function addLead(
                 optValue: optValue,
             },
             options
-        );
+        )
         if (createLead.data) {
-            return createLead;
+            return createLead
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }
 
@@ -55,14 +55,10 @@ export async function editLead(
     location: any,
     accountCategory: any,
     accountCode: any,
-    marginValue: any,
-    mfValue: any,
-    insuranceValue: any,
-    optValue: any,
     leadStatus: any
 ) {
     try {
-        console.log(id);
+        console.log(id)
         const editedLead = await axios.post(
             SERVER + "/leads/editLead",
             {
@@ -73,30 +69,26 @@ export async function editLead(
                 location,
                 account_category: accountCategory.toString(),
                 account_code: accountCode,
-                marginValue: marginValue,
-                mfValue: mfValue,
-                insuranceValue: insuranceValue,
-                optValue: optValue,
                 lead_status: leadStatus,
             },
             options
-        );
+        )
         if (editedLead.data) {
-            return editedLead;
+            return editedLead
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }
 
 export async function getLeads() {
     try {
-        const leads = await axios.get(SERVER + "/leads", options);
+        const leads = await axios.get(SERVER + "/leads", options)
         if (leads.data) {
-            return leads;
+            return leads
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }
 
@@ -105,12 +97,12 @@ export async function getLeadDetails(id: any) {
         const leadDetail = await axios.get(
             SERVER + "/leads/" + id.lead_id,
             options
-        );
+        )
         if (leadDetail.data) {
-            return leadDetail;
+            return leadDetail
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }
 
@@ -120,12 +112,12 @@ export async function findLead(word: any) {
             SERVER + "/leads/search/",
             { searchWord: word },
             options
-        );
+        )
         if (found.data) {
-            return found;
+            return found
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }
 
@@ -140,12 +132,12 @@ export async function createNote(id: any, note: any) {
                 remind_at: null,
             },
             options
-        );
+        )
         if (addNote.data) {
-            return addNote;
+            return addNote
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }
 
@@ -164,11 +156,11 @@ export async function createReminder(
                 remind_at: reminder_time,
             },
             options
-        );
+        )
         if (addReminder.data) {
-            return addReminder;
+            return addReminder
         }
     } catch (error: any) {
-        return error.response.data.message;
+        return error.response.data.message
     }
 }

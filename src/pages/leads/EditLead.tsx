@@ -36,10 +36,6 @@ const EditLead: React.FC<LeadEditProps> = ({
   const [accountCategory, setAccountCategory] = useState("");
   const [accountCode, setAccountCode] = useState("");
   const [leadStatus, setLeadStatus] = useState("");
-  const [marginValue, setMarginValue] = useState(0);
-  const [mfValue, setMfValue] = useState(0);
-  const [insuranceValue, setInsuranceValue] = useState(0);
-  const [optValue, setOptValue] = useState(0);
 
   const backToLeads = () => {
     console.log("Button Clicked");
@@ -61,10 +57,6 @@ const EditLead: React.FC<LeadEditProps> = ({
       address,
       accountCategory,
       accountCode,
-      marginValue,
-      mfValue,
-      insuranceValue,
-      optValue,
       leadStatus
     );
     if (typeof editedLead === "object") {
@@ -174,41 +166,6 @@ const EditLead: React.FC<LeadEditProps> = ({
               Option Brains
             </IonSelectOption>
           </IonSelect>
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating">Margin Value (₹)</IonLabel>
-          <IonInput
-            type="text"
-            value={marginValue}
-            placeholder="Enter Margin Value (₹)"
-            onIonChange={(e: any) => setMarginValue(e.target.value)}
-          />
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating">Mutual Funds Value (₹)</IonLabel>
-          <IonInput
-            type="text"
-            value={mfValue}
-            placeholder="Enter Mutual Funds Value (₹)"
-            onIonChange={(e: any) => setMfValue(e.target.value)}
-          />
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating">Insurance Value (₹)</IonLabel>
-          <IonInput
-            type="text"
-            value={insuranceValue}
-            placeholder="Enter insurance Value (₹)"
-            onIonChange={(e: any) => setInsuranceValue(e.target.value)}
-          />
-        </IonItem>
-        <IonItem>
-          <IonLabel position="floating">Option brains Value (₹)</IonLabel>
-          <IonInput
-            type="text" value={optValue}
-            placeholder="Enter Option brains Value (₹)"
-            onIonChange={(e: any) => setOptValue(e.target.value)}
-          />
         </IonItem>
         <br />
         <IonButton shape="round" onClick={submitLead}>

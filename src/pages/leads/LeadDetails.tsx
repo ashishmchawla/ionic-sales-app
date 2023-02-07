@@ -47,6 +47,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
 }) => {
   const [activeSegment, setActiveSegment] = useState<string>("activity");
   const [activityLog, setActivityLog] = useState([] as any);
+  const [amountLog, setAmountLog] = useState([] as any);
   const [loading, setLoading] = useState(true);
   const [leadData, setLeadData] = useState({} as any);
   const [showNote, setShowNote] = useState(false);
@@ -82,6 +83,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
     if (typeof leadDetails === "object") {
       if (leadDetails.data.status === 1) {
         setLeadData(leadDetails.data.details);
+        setAmountLog(leadDetails.data.amounts);
         setLoading(false);
         const activityData = [] as any;
         if (leadDetails.data.details.activities.length > 0) {
@@ -107,7 +109,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
 
   useEffect(() => {
     callLeadDetails();
-  }, []);
+  });
 
   const editLead = () => {
     history.push({
@@ -117,6 +119,19 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
       },
     });
   };
+
+  const addNumbers = () => {
+    history.push({
+      pathname: "/editLead/" + leadData.id,
+      state: {
+        leadData: leadData,
+      },
+    });
+  };
+
+  const updateAmount = (id: any) => {
+
+  }
 
   const today = moment().format();
 
@@ -204,6 +219,12 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
               </IonButton>
               <p className="lead_icon_title">Edit</p>
             </IonCol>
+            <IonCol className="lead_icon_container">
+              <IonButton fill="clear" onClick={addNumbers}>
+                <IonIcon className="lead_icon" src={addOutline}></IonIcon>
+              </IonButton>
+              <p className="lead_icon_title">Add Stats</p>
+            </IonCol>
           </IonRow>
         </IonGrid>
       </div>
@@ -244,41 +265,6 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
           ) : (
             ""
           )}
-          {leadData.marginValue ? (
-            <div className="lead_details_info_single">
-              <p className="info_heading">Margin Value</p>
-              <p className="info_title"> ₹{leadData.marginValue}</p>
-            </div>
-          ) : (
-            ""
-          )}
-
-          {leadData.mfValue ? (
-            <div className="lead_details_info_single">
-              <p className="info_heading">Mutual Funds Value</p>
-              <p className="info_title"> ₹{leadData.mfValue}</p>
-            </div>
-          ) : (
-            ""
-          )}
-
-          {leadData.insuranceValue ? (
-            <div className="lead_details_info_single">
-              <p className="info_heading">Insurance Value</p>
-              <p className="info_title"> ₹{leadData.insuranceValue}</p>
-            </div>
-          ) : (
-            ""
-          )}
-
-          {leadData.optValue ? (
-            <div className="lead_details_info_single">
-              <p className="info_heading">Option brains Value</p>
-              <p className="info_title"> ₹{leadData.optValue}</p>
-            </div>
-          ) : (
-            ""
-          )}
           <div className="segment_containter">
             <IonSegment
               value={activeSegment}
@@ -286,6 +272,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
             >
               <IonSegmentButton value="activity">Activities</IonSegmentButton>
               <IonSegmentButton value="notes">Notes</IonSegmentButton>
+              <IonSegmentButton value="stats">Stats</IonSegmentButton>
             </IonSegment>
 
             <div>
@@ -388,6 +375,84 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                   ) : (
                     ""
                   )}
+                </>
+              )}
+              {activeSegment === "stats" && (
+                <>
+                  <div className="table">
+                    <table>
+                      <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Updated By</th>
+                        <th></th>
+                      </tr>
+                      {amountLog.map((amount: any) => {
+                        let amountDate = moment(amount.created_at).format("DD MMM YYYY");
+                        if (amount.marginValue) {
+                          return (
+                            <tr>
+                              <td>{amountDate}</td>
+                              <td>Margins</td>
+                              <td>₹ {amount.marginValue}</td>
+                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
+                              <td>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
+                                </IonButton>
+                              </td>
+                            </tr>
+                          );
+                        }
+                        if (amount.mfValue) {
+                          return (
+                            <tr>
+                              <td>{amountDate}</td>
+                              <td>Mutual Funds</td>
+                              <td>₹ {amount.mfValue}</td>
+                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
+                              <td>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
+                                </IonButton>
+                              </td>
+                            </tr>
+                          );
+                        }
+                        if (amount.insuranceValue) {
+                          return (
+                            <tr>
+                              <td>{amountDate}</td>
+                              <td>Insurance</td>
+                              <td>₹ {amount.insuranceValue}</td>
+                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
+                              <td>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
+                                </IonButton>
+                              </td>
+                            </tr>
+                          );
+                        }
+                        if (amount.optValue) {
+                          return (
+                            <tr>
+                              <td>{amountDate}</td>
+                              <td>Option Brains</td>
+                              <td>₹ {amount.optValue}</td>
+                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
+                              <td>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
+                                </IonButton>
+                              </td>
+                            </tr>
+                          );
+                        }
+                      })}
+                    </table>
+                  </div>
                 </>
               )}
             </div>
