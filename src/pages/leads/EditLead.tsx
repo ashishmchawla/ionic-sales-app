@@ -17,6 +17,7 @@ import { RouteComponentProps } from "react-router";
 import { chevronBack } from "ionicons/icons";
 import history from "../../history";
 import { editLead } from "../../integrations/lead";
+import { useSelector } from "react-redux";
 
 interface Ownprops extends RouteComponentProps<{}> { }
 
@@ -28,6 +29,7 @@ const EditLead: React.FC<LeadEditProps> = ({
 }) => {
   let state = {} as any;
   state = location.state;
+  const currentUser = useSelector((state: any) => state.user.currentUser);
   const [present] = useIonToast();
   const [firstName, setFirstName] = useState(state.leadData.first_name);
   const [lastName, setLastName] = useState("");
@@ -57,7 +59,8 @@ const EditLead: React.FC<LeadEditProps> = ({
       address,
       accountCategory,
       accountCode,
-      leadStatus
+      leadStatus,
+      currentUser.id
     );
     if (typeof editedLead === "object") {
       if (editedLead.data.status === 1) {

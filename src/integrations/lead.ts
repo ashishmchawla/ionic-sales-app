@@ -55,7 +55,8 @@ export async function editLead(
     location: any,
     accountCategory: any,
     accountCode: any,
-    leadStatus: any
+    leadStatus: any,
+    leadOwner: any
 ) {
     try {
         console.log(id)
@@ -70,11 +71,74 @@ export async function editLead(
                 account_category: accountCategory.toString(),
                 account_code: accountCode,
                 lead_status: leadStatus,
+                leadOwner: leadOwner,
             },
             options
         )
         if (editedLead.data) {
             return editedLead
+        }
+    } catch (error: any) {
+        return error.response.data.message
+    }
+}
+
+export async function addNumber(
+    id: any,
+    marginValue: any,
+    mfValue: any,
+    insuranceValue: any,
+    optValue: any,
+    leadOwner: any
+) {
+    try {
+        console.log(id)
+        const addNumb = await axios.post(
+            SERVER + "/leads/amounts",
+            {
+                lead_id: id.lead_id,
+                marginValue: marginValue,
+                mfValue: mfValue,
+                insuranceValue: insuranceValue,
+                optValue: optValue,
+                lead_owner: leadOwner,
+            },
+            options
+        )
+        if (addNumb.data) {
+            return addNumb
+        }
+    } catch (error: any) {
+        return error.response.data.message
+    }
+}
+
+export async function editNumber(
+    id: any,
+    lead_id: any,
+    marginValue: any,
+    mfValue: any,
+    insuranceValue: any,
+    optValue: any,
+    leadOwner: any
+) {
+    try {
+        console.log(id)
+        const editNumb = await axios.put(
+            SERVER + "/leads/amounts",
+            {
+                lead_amount_id: id.lead_amount_id,
+                lead_id: lead_id,
+                marginValue: marginValue,
+                mfValue: mfValue,
+                insuranceValue: insuranceValue,
+                optValue: optValue,
+                lead_owner: leadOwner,
+            },
+            options
+        )
+        if (editNumb.data) {
+            return editNumb
         }
     } catch (error: any) {
         return error.response.data.message

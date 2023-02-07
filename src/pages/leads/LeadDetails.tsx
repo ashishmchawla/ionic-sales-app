@@ -122,15 +122,17 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
 
   const addNumbers = () => {
     history.push({
-      pathname: "/editLead/" + leadData.id,
-      state: {
-        leadData: leadData,
-      },
+      pathname: "/addStats/" + leadData.id
     });
   };
 
-  const updateAmount = (id: any) => {
-
+  const updateAmount = (id: any, amounts: any) => {
+    history.push({
+      pathname: "/editStats/" + id,
+      state: {
+        amounts: amounts
+      },
+    });
   }
 
   const today = moment().format();
@@ -398,7 +400,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                               <td>₹ {amount.marginValue}</td>
                               <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
                               <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
                                   <IonIcon className="lead_icon" src={createOutline}></IonIcon>
                                 </IonButton>
                               </td>
@@ -413,7 +415,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                               <td>₹ {amount.mfValue}</td>
                               <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
                               <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
                                   <IonIcon className="lead_icon" src={createOutline}></IonIcon>
                                 </IonButton>
                               </td>
@@ -428,7 +430,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                               <td>₹ {amount.insuranceValue}</td>
                               <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
                               <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
                                   <IonIcon className="lead_icon" src={createOutline}></IonIcon>
                                 </IonButton>
                               </td>
@@ -443,7 +445,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                               <td>₹ {amount.optValue}</td>
                               <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
                               <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id)}>
+                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
                                   <IonIcon className="lead_icon" src={createOutline}></IonIcon>
                                 </IonButton>
                               </td>
