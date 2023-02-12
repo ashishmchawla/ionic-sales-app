@@ -34,8 +34,8 @@
   }
   .lead_icon {
     border: 1px solid $primary;
-    padding: 1rem;
-    font-size: large;
+    padding: 0.5rem;
+    font-size: medium;
     color: $primary;
     border-radius: 50%;
     text-align: center;
@@ -83,4 +83,7 @@
 ion-segment {
   background: $tertiary;
   color: $primary;
+}
+.tableDiv {
+  overflow-x: scroll;
 }

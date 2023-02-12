@@ -25,6 +25,7 @@ import {
   chevronBack,
   createOutline,
   mailOutline,
+  walletOutline,
 } from "ionicons/icons";
 import { Chrono } from "react-chrono";
 import {
@@ -37,9 +38,9 @@ import moment from "moment";
 interface Ownprops
   extends RouteComponentProps<{
     id?: any;
-  }> { }
+  }> {}
 
-interface LeadDetailProps extends Ownprops { }
+interface LeadDetailProps extends Ownprops {}
 
 const LeadDetails: React.FC<LeadDetailProps> = ({
   location,
@@ -96,7 +97,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
             activityItem.type = activity.activity_type;
             activityItem.remind_at = activity.remind_at;
             activityData.push(activityItem);
-            return '';
+            return "";
           });
           setActivityLog(activityData);
         }
@@ -109,7 +110,7 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
 
   useEffect(() => {
     callLeadDetails();
-  });
+  }, []);
 
   const editLead = () => {
     history.push({
@@ -122,18 +123,19 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
 
   const addNumbers = () => {
     history.push({
-      pathname: "/addStats/" + leadData.id
+      pathname: "/addStats/" + leadData.id,
     });
   };
 
   const updateAmount = (id: any, amounts: any) => {
+    console.log(amounts);
     history.push({
       pathname: "/editStats/" + id,
       state: {
-        amounts: amounts
+        amounts: amounts,
       },
     });
-  }
+  };
 
   const today = moment().format();
 
@@ -223,9 +225,9 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
             </IonCol>
             <IonCol className="lead_icon_container">
               <IonButton fill="clear" onClick={addNumbers}>
-                <IonIcon className="lead_icon" src={addOutline}></IonIcon>
+                <IonIcon className="lead_icon" src={walletOutline}></IonIcon>
               </IonButton>
-              <p className="lead_icon_title">Add Stats</p>
+              <p className="lead_icon_title">Stats</p>
             </IonCol>
           </IonRow>
         </IonGrid>
@@ -239,12 +241,16 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
               {leadData.first_name + " " + leadData.last_name}
             </p>
           </div>
-          <div className="lead_details_info_single">
-            <p className="info_heading">Email</p>
-            <p className="info_title">
-              {leadData.email ? leadData.email : "--"}
-            </p>
-          </div>
+          {leadData.email ? (
+            <div className="lead_details_info_single">
+              <p className="info_heading">Email</p>
+              <p className="info_title">
+                {leadData.email ? leadData.email : "--"}
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="lead_details_info_single">
             <p className="info_heading">Phone</p>
             <p className="info_title">+91 {leadData.contact}</p>
@@ -267,13 +273,45 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
           ) : (
             ""
           )}
+          <IonButton
+            shape="round"
+            onClick={() => {
+              setShowNote(!showNote);
+            }}
+          >
+            Add Note
+          </IonButton>
+          {showNote ? (
+            <>
+              <br />
+              <IonItem>
+                <IonTextarea
+                  placeholder="Add your notes"
+                  autofocus={true}
+                  onIonChange={(e: any) => setNote(e.target.value)}
+                ></IonTextarea>
+              </IonItem>
+              <br />
+              <IonButton
+                onClick={saveNote}
+                shape="round"
+                slot="end"
+                fill="outline"
+              >
+                <IonIcon slot="start" icon={addOutline}></IonIcon>
+                Save Note
+              </IonButton>
+            </>
+          ) : (
+            ""
+          )}
           <div className="segment_containter">
             <IonSegment
               value={activeSegment}
               onIonChange={(e) => assignSegment(e.target.value)}
             >
               <IonSegmentButton value="activity">Activities</IonSegmentButton>
-              <IonSegmentButton value="notes">Notes</IonSegmentButton>
+              {/* <IonSegmentButton value="notes">Notes</IonSegmentButton> */}
               <IonSegmentButton value="stats">Stats</IonSegmentButton>
             </IonSegment>
 
@@ -296,163 +334,140 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
                 </>
               )}
 
-              {activeSegment === "notes" && (
-                <>
-                  <br />
-                  <IonButton
-                    shape="round"
-                    onClick={() => {
-                      setShowNote(!showNote);
-                    }}
-                  >
-                    Add Note
-                  </IonButton>
-                  <IonButton
-                    shape="round"
-                    onClick={() => {
-                      setShowReminder(!showReminder);
-                    }}
-                  >
-                    Add Reminder
-                  </IonButton>
-                  <br />
-                  <br />
-                  {showNote ? (
-                    <>
-                      <IonItem>
-                        <IonTextarea
-                          placeholder="Add your notes"
-                          autofocus={true}
-                          onIonChange={(e: any) => setNote(e.target.value)}
-                        ></IonTextarea>
-                      </IonItem>
-                      <br />
-                      <IonButton
-                        onClick={saveNote}
-                        shape="round"
-                        slot="end"
-                        fill="outline"
-                      >
-                        <IonIcon slot="start" icon={addOutline}></IonIcon>
-                        Save Note
-                      </IonButton>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                  {showReminder ? (
-                    <>
-                      <IonItem>
-                        <IonTextarea
-                          placeholder="Add reminder for yourself"
-                          autofocus={true}
-                          onIonChange={(e: any) => setReminder(e.target.value)}
-                        ></IonTextarea>
-                      </IonItem>
-                      <br />
-                      <IonItem>
-                        <IonLabel>Date and Time</IonLabel>
-                        <IonDatetime
-                          hourCycle="h12"
-                          min={today}
-                          minuteValues="0,15,30,45"
-                          onIonChange={(e: any) =>
-                            setReminderTime(e.target.value)
-                          }
-                        >
-                          <span slot="title">Select a Reminder Date-Time</span>
-                        </IonDatetime>
-                      </IonItem>
-                      <br />
-                      <IonButton
-                        onClick={saveReminder}
-                        shape="round"
-                        slot="end"
-                        fill="outline"
-                      >
-                        <IonIcon slot="start" icon={addOutline}></IonIcon>
-                        Save Reminder
-                      </IonButton>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </>
-              )}
+              {/* {activeSegment === "notes" && (
+                
+              )} */}
               {activeSegment === "stats" && (
                 <>
-                  <div className="table">
-                    <table>
-                      <tr>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                        <th>Updated By</th>
-                        <th></th>
-                      </tr>
-                      {amountLog.map((amount: any) => {
-                        let amountDate = moment(amount.created_at).format("DD MMM YYYY");
-                        if (amount.marginValue) {
-                          return (
-                            <tr>
-                              <td>{amountDate}</td>
-                              <td>Margins</td>
-                              <td>₹ {amount.marginValue}</td>
-                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
-                              <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
-                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
-                                </IonButton>
-                              </td>
-                            </tr>
+                  <div className="tableDiv">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Type</th>
+                          <th>Amount</th>
+                          <th>Updated By</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {amountLog.map((amount: any) => {
+                          let returnValue = [];
+                          console.log(amount);
+                          let amountDate = moment(amount.created_at).format(
+                            "DD MMM YYYY"
                           );
-                        }
-                        if (amount.mfValue) {
-                          return (
-                            <tr>
-                              <td>{amountDate}</td>
-                              <td>Mutual Funds</td>
-                              <td>₹ {amount.mfValue}</td>
-                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
-                              <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
-                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
-                                </IonButton>
-                              </td>
-                            </tr>
-                          );
-                        }
-                        if (amount.insuranceValue) {
-                          return (
-                            <tr>
-                              <td>{amountDate}</td>
-                              <td>Insurance</td>
-                              <td>₹ {amount.insuranceValue}</td>
-                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
-                              <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
-                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
-                                </IonButton>
-                              </td>
-                            </tr>
-                          );
-                        }
-                        if (amount.optValue) {
-                          return (
-                            <tr>
-                              <td>{amountDate}</td>
-                              <td>Option Brains</td>
-                              <td>₹ {amount.optValue}</td>
-                              <td>{amount.owner_first_name + " " + amount.owner_last_name}</td>
-                              <td>
-                                <IonButton fill="clear" onClick={() => updateAmount(amount.id, amount)}>
-                                  <IonIcon className="lead_icon" src={createOutline}></IonIcon>
-                                </IonButton>
-                              </td>
-                            </tr>
-                          );
-                        }
-                      })}
+                          if (amount.marginValue) {
+                            returnValue.push(
+                              <tr key={amount.id + "a"}>
+                                <td>{amountDate}</td>
+                                <td>Margins</td>
+                                <td>₹ {amount.marginValue}</td>
+                                <td>
+                                  {amount.owner_first_name +
+                                    " " +
+                                    amount.owner_last_name}
+                                </td>
+                                <td>
+                                  <IonButton
+                                    fill="clear"
+                                    onClick={() =>
+                                      updateAmount(amount.id, amount)
+                                    }
+                                  >
+                                    <IonIcon
+                                      className="lead_icon"
+                                      src={createOutline}
+                                    ></IonIcon>
+                                  </IonButton>
+                                </td>
+                              </tr>
+                            );
+                          }
+                          if (amount.mfValue) {
+                            returnValue.push(
+                              <tr key={amount.id + "b"}>
+                                <td>{amountDate}</td>
+                                <td>Mutual Funds</td>
+                                <td>₹ {amount.mfValue}</td>
+                                <td>
+                                  {amount.owner_first_name +
+                                    " " +
+                                    amount.owner_last_name}
+                                </td>
+                                <td>
+                                  <IonButton
+                                    fill="clear"
+                                    onClick={() =>
+                                      updateAmount(amount.id, amount)
+                                    }
+                                  >
+                                    <IonIcon
+                                      className="lead_icon"
+                                      src={createOutline}
+                                    ></IonIcon>
+                                  </IonButton>
+                                </td>
+                              </tr>
+                            );
+                          }
+                          if (amount.insuranceValue) {
+                            returnValue.push(
+                              <tr key={amount.id + "c"}>
+                                <td>{amountDate}</td>
+                                <td>Insurance</td>
+                                <td>₹ {amount.insuranceValue}</td>
+                                <td>
+                                  {amount.owner_first_name +
+                                    " " +
+                                    amount.owner_last_name}
+                                </td>
+                                <td>
+                                  <IonButton
+                                    fill="clear"
+                                    onClick={() =>
+                                      updateAmount(amount.id, amount)
+                                    }
+                                  >
+                                    <IonIcon
+                                      className="lead_icon"
+                                      src={createOutline}
+                                    ></IonIcon>
+                                  </IonButton>
+                                </td>
+                              </tr>
+                            );
+                          }
+                          if (amount.optValue) {
+                            returnValue.push(
+                              <tr key={amount.id + "d"}>
+                                <td>{amountDate}</td>
+                                <td>Option Brains</td>
+                                <td>₹ {amount.optValue}</td>
+                                <td>
+                                  {amount.owner_first_name +
+                                    " " +
+                                    amount.owner_last_name}
+                                </td>
+                                <td>
+                                  <IonButton
+                                    fill="clear"
+                                    onClick={() =>
+                                      updateAmount(amount.id, amount)
+                                    }
+                                  >
+                                    <IonIcon
+                                      className="lead_icon"
+                                      src={createOutline}
+                                    ></IonIcon>
+                                  </IonButton>
+                                </td>
+                              </tr>
+                            );
+                          }
+                          return returnValue;
+                        })}
+                      </tbody>
                     </table>
                   </div>
                 </>
