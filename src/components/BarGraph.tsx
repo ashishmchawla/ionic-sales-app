@@ -21,7 +21,7 @@ const BarGraph: React.FC<GraphData> = ({ type, data }) => {
     labels: ["Achieved", "Target"],
     datasets: [
       {
-        label: "November Stats",
+        label: "Monthly Stats",
         backgroundColor: ["#3b5998", "#8b9dc3"],
         borderColor: "#8b9dc3",
         borderWidth: 2,
