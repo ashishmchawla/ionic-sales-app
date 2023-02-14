@@ -92,9 +92,9 @@ const HomeTab: React.FC = () => {
               <IonCard className="homePageCard" color="primary">
                 <IonCardHeader>
                   <IonCardTitle className="homePageCardTitle">
-                    {counts.follow_ups}
+                    {counts.target - counts.achieved}
                   </IonCardTitle>
-                  <IonCardSubtitle>Follow Ups</IonCardSubtitle>
+                  <IonCardSubtitle>Pending</IonCardSubtitle>
                 </IonCardHeader>
               </IonCard>
             </IonCol>

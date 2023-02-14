@@ -19,9 +19,9 @@ import history from "../../history";
 import { editLead } from "../../integrations/lead";
 import { useSelector } from "react-redux";
 
-interface Ownprops extends RouteComponentProps<{}> { }
+interface Ownprops extends RouteComponentProps<{}> {}
 
-interface LeadEditProps extends Ownprops { }
+interface LeadEditProps extends Ownprops {}
 
 const EditLead: React.FC<LeadEditProps> = ({
   location,
@@ -93,7 +93,7 @@ const EditLead: React.FC<LeadEditProps> = ({
     setLastName(leadData.last_name);
     setContact(leadData.contact);
     setAddress(leadData.location);
-    setAccountCategory(leadData.account_category.split(','));
+    setAccountCategory(leadData.account_category?.split(","));
     setAccountCode(leadData.account_code);
     setLeadStatus(leadData.lead_status);
   }, []);
@@ -165,7 +165,8 @@ const EditLead: React.FC<LeadEditProps> = ({
             <IonSelectOption value="account">Account</IonSelectOption>
             <IonSelectOption value="margin">Margin</IonSelectOption>
             <IonSelectOption value="mutual_funds">Mutual Funds</IonSelectOption>
-            <IonSelectOption value="insurance">Insurance</IonSelectOption>  <IonSelectOption value="option_brains">
+            <IonSelectOption value="insurance">Insurance</IonSelectOption>{" "}
+            <IonSelectOption value="option_brains">
               Option Brains
             </IonSelectOption>
           </IonSelect>
