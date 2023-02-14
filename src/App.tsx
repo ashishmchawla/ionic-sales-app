@@ -33,6 +33,8 @@ import AddLead from "./pages/leads/AddLead";
 import EditLead from "./pages/leads/EditLead";
 import AddStats from "./pages/leads/AddStats";
 import EditStats from "./pages/leads/EditStats";
+import Policy from "./pages/Policy";
+import Terms from "./pages/Terms";
 
 setupIonicReact();
 
@@ -58,6 +60,8 @@ const App: React.FC = () => {
           <Route exact path="/addLead" component={AddLead} />
           <Route exact path="/editLead/:lead_id" component={EditLead} />
           <Route exact path="/addStats/:lead_id" component={AddStats} />
+          <Route exact path="/terms" component={Terms} />
+          <Route exact path="/policy" component={Policy} />
           <Route
             exact
             path="/editStats/:lead_amount_id"

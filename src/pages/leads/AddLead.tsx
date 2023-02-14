@@ -45,32 +45,36 @@ const AddLead = () => {
 
   async function submitLead() {
     console.log(accountCategory);
-    const addedLead = await addLead(
-      firstName,
-      lastName,
-      contact,
-      location,
-      accountCategory,
-      accountCode,
-      marginValue,
-      mfValue,
-      insuranceValue,
-      optValue,
-      currentUser.id
-    );
-    if (typeof addedLead === "object") {
-      if (addedLead.data.status === 1) {
-        console.log(addedLead.data);
-        presentToast(addedLead.data.message, "toast-success");
-        history.push({
-          pathname: "/lead/" + addedLead.data.lead.id,
-        });
-      } else {
-        presentToast(addedLead.data.error_message, "toast-warning");
+    if (firstName.length === 0 || lastName.length === 0) {
+      presentToast("Basic lead details need to be filled", "toast-danger");
+    } else {
+      const addedLead = await addLead(
+        firstName,
+        lastName,
+        contact,
+        location,
+        accountCategory,
+        accountCode,
+        marginValue,
+        mfValue,
+        insuranceValue,
+        optValue,
+        currentUser.id
+      );
+      if (typeof addedLead === "object") {
+        if (addedLead.data.status === 1) {
+          console.log(addedLead.data);
+          presentToast(addedLead.data.message, "toast-success");
+          history.push({
+            pathname: "/lead/" + addedLead.data.lead.id,
+          });
+        } else {
+          presentToast(addedLead.data.error_message, "toast-warning");
+        }
       }
-    }
-    if (typeof addedLead === "string") {
-      presentToast(addedLead, "toast-danger");
+      if (typeof addedLead === "string") {
+        presentToast(addedLead, "toast-danger");
+      }
     }
   }
 

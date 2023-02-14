@@ -66,41 +66,15 @@ const MoreTab: React.FC = () => {
               <IonLabel></IonLabel>
             </IonItemDivider> */}
             <IonAccordionGroup>
-              <IonAccordion value="first">
-                <IonItem slot="header" color="tertiary">
-                  <IonLabel>Notifications</IonLabel>
-                </IonItem>
-                <div className="ion-padding" slot="content">
-                  <IonItem>
-                    <IonLabel>Show Notifications</IonLabel>
-                    <IonToggle slot="end"></IonToggle>
-                  </IonItem>
-                </div>
-              </IonAccordion>
-
-              <IonAccordion value="second">
-                <IonItem slot="header" color="tertiary">
-                  <IonLabel>Account</IonLabel>
-                </IonItem>
-                <div className="ion-padding" slot="content">
-                  <IonItem>
-                    <IonLabel>Manage your account</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonLabel>Change Avatar</IonLabel>
-                  </IonItem>
-                </div>
-              </IonAccordion>
-
               <IonAccordion value="third">
                 <IonItem slot="header" color="tertiary">
                   <IonLabel>Information</IonLabel>
                 </IonItem>
                 <div className="ion-padding" slot="content">
-                  <IonItem>
-                    <IonLabel>FAQ</IonLabel>
+                  <IonItem href="/terms">
+                    <IonLabel>Terms & Conditions</IonLabel>
                   </IonItem>
-                  <IonItem>
+                  <IonItem href="/policy">
                     <IonLabel>Privacy Policy</IonLabel>
                   </IonItem>
                 </div>
