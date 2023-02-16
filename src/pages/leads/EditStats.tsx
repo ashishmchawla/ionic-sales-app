@@ -3,6 +3,7 @@ import {
   IonButton,
   IonButtons,
   IonContent,
+  IonHeader,
   IonIcon,
   IonInput,
   IonItem,
@@ -89,14 +90,16 @@ const EditStats: React.FC<EditStatsProps> = ({
 
   return (
     <IonContent>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonButton onClick={backToLeads}>
-            <IonIcon src={chevronBack} />
-            Back
-          </IonButton>
-        </IonButtons>
-      </IonToolbar>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={backToLeads}>
+              <IonIcon src={chevronBack} />
+              Back
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <div className="add_leads">
         <IonText>
           <h1>Create New Stats Entry</h1>

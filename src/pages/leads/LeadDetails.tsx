@@ -16,6 +16,7 @@ import {
   IonLabel,
   IonItem,
   IonDatetime,
+  IonHeader,
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
 import history from "../../history";
@@ -184,15 +185,16 @@ const LeadDetails: React.FC<LeadDetailProps> = ({
     </div>
   ) : (
     <IonContent className="lead_details">
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonButton onClick={backToLeads}>
-            <IonIcon src={chevronBack} />
-            Back
-          </IonButton>
-        </IonButtons>
-      </IonToolbar>
-
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={backToLeads}>
+              <IonIcon src={chevronBack} />
+              Back
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <div className="lead_details_avatar_container">
         <div className="lead_details_avatar">
           {leadData.first_name[0] + leadData.last_name[0]}

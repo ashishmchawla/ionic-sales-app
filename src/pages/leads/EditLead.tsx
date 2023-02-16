@@ -3,6 +3,7 @@ import {
   IonButton,
   IonButtons,
   IonContent,
+  IonHeader,
   IonIcon,
   IonInput,
   IonItem,
@@ -100,14 +101,16 @@ const EditLead: React.FC<LeadEditProps> = ({
 
   return (
     <IonContent>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonButton onClick={backToLeads}>
-            <IonIcon src={chevronBack} />
-            Back
-          </IonButton>
-        </IonButtons>
-      </IonToolbar>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={backToLeads}>
+              <IonIcon src={chevronBack} />
+              Back
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <div className="add_leads">
         <IonText>
           <h1>Edit Lead</h1>
