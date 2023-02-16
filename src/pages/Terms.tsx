@@ -32,22 +32,22 @@ const Terms = () => {
         </IonToolbar>
       </IonHeader>
       <div className="terms">
-        <h1>Privacy Policy</h1>
-      </div>
-      <h4>
-        Sample Mobile App Terms and Conditions Template Terms and Conditions
-        ("Terms") Our Terms and Conditions were last updated on 16th February
-        2023. Please read these terms and conditions carefully before using Our
-        Service. Interpretation and Definitions Interpretation The words of
-        which the initial letter is capitalized have meanings defined under the
-        following conditions. The following definitions shall have the same
-        meaning regardless of whether they appear in singular or in plural.
-        Definitions For the purposes of these Terms and Conditions: <br />●
-        “Application” means the software program provided by the Company
-        downloaded by You on any electronic device, named Triventure Sales.{" "}
-        <br /> ● “Application Store” means the digital distribution service
-        operated and developed by Apple Inc. (Apple App Store) or Google Inc.
-        (Google Play Store) in which the Application has been downloaded. <br />
+        <h1>Terms & Conditions</h1>
+      </div>{" "}
+      <div className="terms_content">
+        Terms and Conditions ("Terms") Our Terms and Conditions were last
+        updated on 16th February 2023. Please read these terms and conditions
+        carefully before using Our Service. Interpretation and Definitions
+        Interpretation The words of which the initial letter is capitalized have
+        meanings defined under the following conditions. The following
+        definitions shall have the same meaning regardless of whether they
+        appear in singular or in plural. Definitions For the purposes of these
+        Terms and Conditions: <br />● “Application” means the software program
+        provided by the Company downloaded by You on any electronic device,
+        named Triventure Sales. <br /> ● “Application Store” means the digital
+        distribution service operated and developed by Apple Inc. (Apple App
+        Store) or Google Inc. (Google Play Store) in which the Application has
+        been downloaded. <br />
         ● “Affiliate” means an entity that controls, is controlled by or is
         under common control with a party, where "control" means ownership of
         50% or more of the shares, equity interest or other securities entitled
@@ -135,68 +135,69 @@ const Terms = () => {
         gender, national/ethnic origin, or other targeted groups. <br />● Spam,
         machine – or randomly – generated, constituting unauthorized or
         unsolicited advertising, chain letters, any other form of unauthorized
-        solicitation, or any form of lottery or gambling. ● Containing or
+        solicitation, or any form of lottery or gambling. <br />● Containing or
         installing any viruses, worms, malware, trojan horses, or other content
         that is designed or intended to disrupt, damage, or limit the
         functioning of any software, hardware or telecommunications equipment or
         to damage or obtain unauthorized access to any data or other information
-        of a third person. ● Infringing on any proprietary rights of any party,
-        including patent, trademark, trade secret, copyright, right of publicity
-        or other rights. ● Impersonating any person or entity including the
-        Company and its employees or representatives. ● Violating the privacy of
-        any third person. ● False information and features. The Company reserves
-        the right, but not the obligation, to, in its sole discretion, determine
-        whether or not any Content is appropriate and complies with this Terms,
-        refuse or remove this Content. The Company further reserves the right to
-        make formatting and edits and change the manner of any Content. The
-        Company can also limit or revoke the use of the Service if You post such
-        objectionable Content. As the Company cannot control all content posted
-        by users and/or third parties on the Service, you agree to use the
-        Service at your own risk. You understand that by using the Service You
-        may be exposed to content that You may find offensive, indecent,
-        incorrect or objectionable, and You agree that under no circumstances
-        will the Company be liable in any way for any content, including any
-        errors or omissions in any content, or any loss or damage of any kind
-        incurred as a result of your use of any content. Content Backups
-        Although regular backups of Content are performed, the Company does not
-        guarantee there will be no loss or corruption of data. Corrupt or
-        invalid backup points may be caused by, without limitation, Content that
-        is corrupted prior to being backed up or that changes during the time a
-        backup is performed. The Company will provide support and attempt to
-        troubleshoot any known or discovered issues that may affect the backups
-        of Content. But You acknowledge that the Company has no liability
-        related to the integrity of Content or the failure to successfully
-        restore Content to a usable state. You agree to maintain a complete and
-        accurate copy of any Content in a location independent of the Service.
-        Copyright Policy Intellectual Property Infringement We respect the
-        intellectual property rights of others. It is Our policy to respond to
-        any claim that Content posted on the Service infringes a copyright or
-        other intellectual property infringement of any person. If You are a
-        copyright owner, or authorized on behalf of one, and You believe that
-        the copyrighted work has been copied in a way that constitutes copyright
-        infringement that is taking place through the Service, You must submit
-        Your notice in writing to the attention of our copyright agent via email
-        ([COPYRIGHT_AGENT_CONTACT_EMAIL]) and include in Your notice a detailed
-        description of the alleged infringement. You may be held accountable for
-        damages (including costs and attorneys' fees) for misrepresenting that
-        any Content is infringing Your copyright. DMCA Notice and DMCA Procedure
-        for Copyright Infringement Claims You may submit a notification pursuant
-        to the Digital Millennium Copyright Act (DMCA) by providing our
-        Copyright Agent with the following information in writing (see 17 U.S.C
-        512(c)(3) for further detail): ● An electronic or physical signature of
-        the person authorized to act on behalf of the owner of the copyright's
-        interest. ● A description of the copyrighted work that You claim has
-        been infringed, including the URL (i.e., web page address) of the
-        location where the copyrighted work exists or a copy of the copyrighted
-        work. ● Identification of the URL or other specific location on the
-        Service where the material that You claim is infringing is located. ●
-        Your address, telephone number, and email address. ● A statement by You
+        of a third person. <br />● Infringing on any proprietary rights of any
+        party, including patent, trademark, trade secret, copyright, right of
+        publicity or other rights. <br />● Impersonating any person or entity
+        including the Company and its employees or representatives. ● Violating
+        the privacy of any third person. <br />● False information and features.
+        The Company reserves the right, but not the obligation, to, in its sole
+        discretion, determine whether or not any Content is appropriate and
+        complies with this Terms, refuse or remove this Content. <br />
+        The Company further reserves the right to make formatting and edits and
+        change the manner of any Content. The Company can also limit or revoke
+        the use of the Service if You post such objectionable Content. As the
+        Company cannot control all content posted by users and/or third parties
+        on the Service, you agree to use the Service at your own risk. You
+        understand that by using the Service You may be exposed to content that
+        You may find offensive, indecent, incorrect or objectionable, and You
+        agree that under no circumstances will the Company be liable in any way
+        for any content, including any errors or omissions in any content, or
+        any loss or damage of any kind incurred as a result of your use of any
+        content. Content Backups Although regular backups of Content are
+        performed, the Company does not guarantee there will be no loss or
+        corruption of data. Corrupt or invalid backup points may be caused by,
+        without limitation, Content that is corrupted prior to being backed up
+        or that changes during the time a backup is performed. The Company will
+        provide support and attempt to troubleshoot any known or discovered
+        issues that may affect the backups of Content. But You acknowledge that
+        the Company has no liability related to the integrity of Content or the
+        failure to successfully restore Content to a usable state. You agree to
+        maintain a complete and accurate copy of any Content in a location
+        independent of the Service. Copyright Policy Intellectual Property
+        Infringement We respect the intellectual property rights of others. It
+        is Our policy to respond to any claim that Content posted on the Service
+        infringes a copyright or other intellectual property infringement of any
+        person. If You are a copyright owner, or authorized on behalf of one,
+        and You believe that the copyrighted work has been copied in a way that
+        constitutes copyright infringement that is taking place through the
+        Service, You must submit Your notice in writing to the attention of our
+        copyright agent via email (mentioned below) and include in Your notice a
+        detailed description of the alleged infringement. You may be held
+        accountable for damages (including costs and attorneys' fees) for
+        misrepresenting that any Content is infringing Your copyright. DMCA
+        Notice and DMCA Procedure for Copyright Infringement Claims You may
+        submit a notification pursuant to the Digital Millennium Copyright Act
+        (DMCA) by providing our Copyright Agent with the following information
+        in writing (see 17 U.S.C 512(c)(3) for further detail):
+        <br /> ● An electronic or physical signature of the person authorized to
+        act on behalf of the owner of the copyright's interest. <br />● A
+        description of the copyrighted work that You claim has been infringed,
+        including the URL (i.e., web page address) of the location where the
+        copyrighted work exists or a copy of the copyrighted work. <br />●
+        Identification of the URL or other specific location on the Service
+        where the material that You claim is infringing is located. <br />● Your
+        address, telephone number, and email address. <br />● A statement by You
         that You have a good faith belief that the disputed use is not
-        authorized by the copyright owner, its agent, or the law. ● A statement
-        by You, made under penalty of perjury, that the above information in
-        Your notice is accurate and that You are the copyright owner or
-        authorized to act on the copyright owner's behalf. You can contact our
-        copyright agent via email ([COPYRIGHT_AGENT_CONTACT_EMAIL]). Upon
+        authorized by the copyright owner, its agent, or the law. <br />● A
+        statement by You, made under penalty of perjury, that the above
+        information in Your notice is accurate and that You are the copyright
+        owner or authorized to act on the copyright owner's behalf. <br />
+        You can contact our copyright agent via email (mentioned below). Upon
         receipt of a notification, the Company will take whatever action, in its
         sole discretion, it deems appropriate, including removal of the
         challenged content from the Service. Intellectual Property The Service
@@ -213,51 +214,52 @@ const Terms = () => {
         license to use, reproduce, disclose, sub-license, distribute, modify and
         exploit such Feedback without restriction. Links to Other Websites Our
         Service may contain links to third-party web sites or services that are
-        not owned or controlled by the Company. The Company has no control over,
-        and assumes no responsibility for, the content, privacy policies, or
-        practices of any third party web sites or services. You further
-        acknowledge and agree that the Company shall not be responsible or
-        liable, directly or indirectly, for any damage or loss caused or alleged
-        to be caused by or in connection with the use of or reliance on any such
-        content, goods or services available on or through any such web sites or
-        services. We strongly advise You to read the terms and conditions and
-        privacy policies of any third-party web sites or services that You
-        visit. Termination We may terminate or suspend Your Account immediately,
-        without prior notice or liability, for any reason whatsoever, including
-        without limitation if You breach these Terms and Conditions. Upon
-        termination, Your right to use the Service will cease immediately. If
-        You wish to terminate Your Account, You may simply discontinue using the
-        Service. Limitation of Liability Notwithstanding any damages that You
-        might incur, the entire liability of the Company and any of its
-        suppliers under any provision of this Terms and Your exclusive remedy
-        for all of the foregoing shall be limited to the amount actually paid by
-        You through the Service or 100 USD if You haven't purchased anything
-        through the Service. To the maximum extent permitted by applicable law,
-        in no event shall the Company or its suppliers be liable for any
-        special, incidental, indirect, or consequential damages whatsoever
-        (including, but not limited to, damages for loss of profits, loss of
-        data or other information, for business interruption, for personal
-        injury, loss of privacy arising out of or in any way related to the use
-        of or inability to use the Service, third-party software and/or
-        third-party hardware used with the Service, or otherwise in connection
-        with any provision of this Terms), even if the Company or any supplier
-        has been advised of the possibility of such damages and even if the
-        remedy fails of its essential purpose. Some states do not allow the
-        exclusion of implied warranties or limitation of liability for
-        incidental or consequential damages, which means that some of the above
-        limitations may not apply. In these states, each party's liability will
-        be limited to the greatest extent permitted by law. "AS IS" and "AS
-        AVAILABLE" Disclaimer The Service is provided to You "AS IS" and "AS
-        AVAILABLE" and with all faults and defects without warranty of any kind.
-        To the maximum extent permitted under applicable law, the Company, on
-        its own behalf and on behalf of its Affiliates and its and their
-        respective licensors and service providers, expressly disclaims all
-        warranties, whether express, implied, statutory or otherwise, with
-        respect to the Service, including all implied warranties of
-        merchantability, fitness for a particular purpose, title and
-        non-infringement, and warranties that may arise out of course of
-        dealing, course of performance, usage or trade practice. Without
-        limitation to the foregoing, the Company provides no warranty or
+        not owned or controlled by the Company.
+        <br /> The Company has no control over, and assumes no responsibility
+        for, the content, privacy policies, or practices of any third party web
+        sites or services. You further acknowledge and agree that the Company
+        shall not be responsible or liable, directly or indirectly, for any
+        damage or loss caused or alleged to be caused by or in connection with
+        the use of or reliance on any such content, goods or services available
+        on or through any such web sites or services. We strongly advise You to
+        read the terms and conditions and privacy policies of any third-party
+        web sites or services that You visit. Termination We may terminate or
+        suspend Your Account immediately, without prior notice or liability, for
+        any reason whatsoever, including without limitation if You breach these
+        Terms and Conditions. Upon termination, Your right to use the Service
+        will cease immediately. If You wish to terminate Your Account, You may
+        simply discontinue using the Service. Limitation of Liability
+        Notwithstanding any damages that You might incur, the entire liability
+        of the Company and any of its suppliers under any provision of this
+        Terms and Your exclusive remedy for all of the foregoing shall be
+        limited to the amount actually paid by You through the Service or an
+        amount (decided by company at that time) if You haven't purchased
+        anything through the Service. <br />
+        To the maximum extent permitted by applicable law, in no event shall the
+        Company or its suppliers be liable for any special, incidental,
+        indirect, or consequential damages whatsoever (including, but not
+        limited to, damages for loss of profits, loss of data or other
+        information, for business interruption, for personal injury, loss of
+        privacy arising out of or in any way related to the use of or inability
+        to use the Service, third-party software and/or third-party hardware
+        used with the Service, or otherwise in connection with any provision of
+        this Terms), even if the Company or any supplier has been advised of the
+        possibility of such damages and even if the remedy fails of its
+        essential purpose. Some states do not allow the exclusion of implied
+        warranties or limitation of liability for incidental or consequential
+        damages, which means that some of the above limitations may not apply.
+        In these states, each party's liability will be limited to the greatest
+        extent permitted by law. "AS IS" and "AS AVAILABLE" Disclaimer The
+        Service is provided to You "AS IS" and "AS AVAILABLE" and with all
+        faults and defects without warranty of any kind. To the maximum extent
+        permitted under applicable law, the Company, on its own behalf and on
+        behalf of its Affiliates and its and their respective licensors and
+        service providers, expressly disclaims all warranties, whether express,
+        implied, statutory or otherwise, with respect to the Service, including
+        all implied warranties of merchantability, fitness for a particular
+        purpose, title and non-infringement, and warranties that may arise out
+        of course of dealing, course of performance, usage or trade practice.
+        Without limitation to the foregoing, the Company provides no warranty or
         undertaking, and makes no representation of any kind that the Service
         will meet Your requirements, achieve any intended results, be compatible
         or work with any other software, applications, systems or services,
@@ -265,30 +267,36 @@ const Terms = () => {
         standards or be error free or that any errors or defects can or will be
         corrected. Without limiting the foregoing, neither the Company nor any
         of the company's provider makes any representation or warranty of any
-        kind, express or implied: (i) as to the operation or availability of the
-        Service, or the information, content, and materials or products included
-        thereon; (ii) that the Service will be uninterrupted or error-free;
+        kind, express or implied: <br />
+        (i) as to the operation or availability of the Service, or the
+        information, content, and materials or products included thereon; <br />
+        (ii) that the Service will be uninterrupted or error-free;
+        <br />
         (iii) as to the accuracy, reliability, or currency of any information or
-        content provided through the Service; or (iv) that the Service, its
-        servers, the content, or e-mails sent from or on behalf of the Company
-        are free of viruses, scripts, trojan horses, worms, malware, timebombs
-        or other harmful components. Some jurisdictions do not allow the
-        exclusion of certain types of warranties or limitations on applicable
-        statutory rights of a consumer, so some or all of the above exclusions
-        and limitations may not apply to You. But in such a case the exclusions
-        and limitations set forth in this section shall be applied to the
-        greatest extent enforceable under applicable law. <br />
-        <big>Governing Law </big>
+        content provided through the Service; or <br />
+        (iv) that the Service, its servers, the content, or e-mails sent from or
+        on behalf of the Company are free of viruses, scripts, trojan horses,
+        worms, malware, timebombs or other harmful components. <br />
+        Some jurisdictions do not allow the exclusion of certain types of
+        warranties or limitations on applicable statutory rights of a consumer,
+        so some or all of the above exclusions and limitations may not apply to
+        You. But in such a case the exclusions and limitations set forth in this
+        section shall be applied to the greatest extent enforceable under
+        applicable law. <br />
+        <br />
+        <span className="highlight">Governing Law </span>
         <br />
         The laws of the Country, excluding its conflicts of law rules, shall
         govern this Terms and Your use of the Service. Your use of the
         Application may also be subject to other local, state, national, or
         international laws. <br />
-        <big>Disputes Resolution</big>
+        <br />
+        <span className="highlight">Disputes Resolution</span>
         <br /> If You have any concern or dispute about the Service, You agree
         to first try to resolve the dispute informally by contacting the
         Company. <br />
-        <big> Changes</big>
+        <br />
+        <span className="highlight"> Changes</span>
         <br /> to These Terms and Conditions We reserve the right, at Our sole
         discretion, to modify or replace these Terms at any time. If a revision
         is material We will make reasonable efforts to provide at least 30 days'
@@ -299,10 +307,11 @@ const Terms = () => {
         terms, in whole or in part, please stop using the website and the
         Service. <br />
         Contact Us If you have any questions about these Terms and Conditions,
-        You can contact us: <br />
-        ● By visiting this page on our website: https://triventure.in <br />● By
-        sending us an email: query@triventure.in
-      </h4>
+        You can contact us: <br />● By visiting this page on our website:{" "}
+        <a href="https://triventure.in">https://triventure.in</a> <br />● By
+        sending us an email:{" "}
+        <a href="mailto:query@triventure.in">query@triventure.in</a>
+      </div>
     </IonContent>
   );
 };
