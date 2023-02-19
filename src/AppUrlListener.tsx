@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import history from "./history";
 import { App as CapacitorApp } from "@capacitor/app";
+import { IonSpinner } from "@ionic/react";
 
 /* Extras */
 const AppUrlListener: React.FC<any> = ({ location }) => {
@@ -14,33 +15,46 @@ const AppUrlListener: React.FC<any> = ({ location }) => {
         CapacitorApp.exitApp();
       } else {
         if (currentLink.includes("MoreTab")) {
-          history.replace({
-            pathname: "/home",
-            state: {
-              tabName: "HomeTab",
-            },
-          });
-        } else if (currentLink.includes("LeadsTab")) {
           console.log("Going back to Home");
-          history.replace({
-            pathname: "/home",
-            state: {
-              tabName: "HomeTab",
-            },
-          });
+          setTimeout(() => {
+            history.push({
+              pathname: "/home",
+              state: {
+                tabName: "HomeTab",
+              },
+            });
+          }, 1000);
+        } else if (currentLink.includes("LeadsTab")) {
+          console.log("Going back to Home 1");
+          setTimeout(() => {
+            history.push({
+              pathname: "/home",
+              state: {
+                tabName: "HomeTab",
+              },
+            });
+          }, 1000);
         } else {
-          history.replace({
-            pathname: "/home",
-            state: {
-              tabName: "HomeTab",
-            },
-          });
+          console.log("Going back to Home 2");
+          setTimeout(() => {
+            history.push({
+              pathname: "/home",
+              state: {
+                tabName: "HomeTab",
+              },
+            });
+          }, 1000);
         }
       }
     });
   }, []);
 
-  return null;
+  return (
+    <div className="spinner">
+      <IonSpinner color="primary"></IonSpinner>
+      <h3> Loading Data</h3>
+    </div>
+  );
 };
 
 export default AppUrlListener;
