@@ -23,6 +23,9 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/scss/main.scss";
 
+/* URL Listener */
+import AppUrlListener from "./AppUrlListener";
+
 /* Components */
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -43,6 +46,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
+        <AppUrlListener></AppUrlListener>
         <IonRouterOutlet>
           <Route
             exact

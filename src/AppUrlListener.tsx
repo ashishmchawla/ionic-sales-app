@@ -1,32 +1,35 @@
 import React, { useEffect } from "react";
 import history from "./history";
-import { App } from "@capacitor/app";
+import { App as CapacitorApp } from "@capacitor/app";
 
 /* Extras */
 const AppUrlListener: React.FC<any> = ({ location }) => {
   useEffect(() => {
-    App.addListener("backButton", (e: any) => {
+    console.log("url clicker");
+    CapacitorApp.addListener("backButton", (e: any) => {
+      console.log("url clicker 2");
       let currentLink = window.location.href;
       console.log(currentLink);
       if (window.location.pathname === "/home/HomeTab") {
-        App.exitApp();
+        CapacitorApp.exitApp();
       } else {
         if (currentLink.includes("MoreTab")) {
-          history.push({
+          history.replace({
             pathname: "/home",
             state: {
               tabName: "HomeTab",
             },
           });
         } else if (currentLink.includes("LeadsTab")) {
-          history.push({
+          console.log("Going back to Home");
+          history.replace({
             pathname: "/home",
             state: {
               tabName: "HomeTab",
             },
           });
         } else {
-          history.push({
+          history.replace({
             pathname: "/home",
             state: {
               tabName: "HomeTab",
