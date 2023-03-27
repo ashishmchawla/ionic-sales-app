@@ -5,6 +5,7 @@ import { IonSpinner } from "@ionic/react";
 
 /* Extras */
 const AppUrlListener: React.FC<any> = ({ location }) => {
+  let currentLink = window.location.href;
   useEffect(() => {
     console.log("url clicker");
     CapacitorApp.addListener("backButton", (e: any) => {
@@ -50,10 +51,18 @@ const AppUrlListener: React.FC<any> = ({ location }) => {
   }, []);
 
   return (
-    <div className="spinner">
-      <IonSpinner color="primary"></IonSpinner>
-      <h3> Loading Data</h3>
-    </div>
+    <>
+      {currentLink.includes("login") ||
+      currentLink.includes("signup") ||
+      currentLink.includes("forgot") ? (
+        <div className="spinner">
+          <IonSpinner color="primary"></IonSpinner>
+          <h3> Loading Data</h3>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
