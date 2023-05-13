@@ -134,15 +134,15 @@ const AddLead = () => {
             onIonChange={(e: any) => setLocation(e.target.value)}
           />
         </IonItem>
-        <IonItem>
+        {/* <IonItem>
           <IonLabel position="floating">Account Code</IonLabel>
           <IonInput
             type="text"
             placeholder="Enter account code"
             onIonChange={(e: any) => setAccountCode(e.target.value)}
           />
-        </IonItem>
-        <IonItem>
+        </IonItem> */}
+        {/* <IonItem>
           <IonSelect
             placeholder="Account Category"
             onIonChange={(e: any) => setAccountCategory(e.target.value)}
@@ -188,7 +188,7 @@ const AddLead = () => {
             placeholder="Enter Option brains Value (₹)"
             onIonChange={(e: any) => setOptValue(e.target.value)}
           />
-        </IonItem>
+        </IonItem> */}
         <br />
         <IonButton shape="round" onClick={submitLead}>
           Submit

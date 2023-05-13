@@ -13,7 +13,7 @@ import {
   IonNote,
   useIonToast,
 } from "@ionic/react";
-import logo from "../theme/images/triventure_logo.png";
+import logo from "../theme/images/logo_new.png";
 import { arrowForwardOutline } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import { loginUser } from "../integrations/auth";
