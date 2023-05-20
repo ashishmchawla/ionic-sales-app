@@ -21,6 +21,7 @@ import { getStats } from "../../integrations/stats";
 const HomeTab: React.FC = () => {
   const [counts, setCounts] = useState({} as any);
   const [graphData, setGraphData] = useState({} as any);
+  const [pendingAmt, setPendingAmt] = useState(0);
 
   async function callStats() {
     const leads = await getStats();
@@ -28,6 +29,10 @@ const HomeTab: React.FC = () => {
     if (leads.data.status === 1) {
       if (typeof leads === "object") {
         setCounts(leads.data.counts);
+        let pendingCount = counts.target - counts.achieved;
+        if (!isNaN(pendingCount)) {
+          setPendingAmt(pendingCount);
+        }
         setGraphData(leads.data.graph_stats);
         // setInitialLeads(leads.data.results);
         // setOldLeads(leads.data.results);
@@ -61,7 +66,7 @@ const HomeTab: React.FC = () => {
           <IonRow>
             <IonCol>
               <IonText>
-                <h1 className="pageTitle">Leads Overview</h1>
+                <h1 className="pageTitle">Analytics Overview</h1>
               </IonText>
             </IonCol>
           </IonRow>
@@ -92,7 +97,7 @@ const HomeTab: React.FC = () => {
               <IonCard className="homePageCard" color="primary">
                 <IonCardHeader>
                   <IonCardTitle className="homePageCardTitle">
-                    {counts.target - counts.achieved}
+                    {pendingAmt}
                   </IonCardTitle>
                   <IonCardSubtitle>Pending</IonCardSubtitle>
                 </IonCardHeader>
